@@ -4,13 +4,14 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MoreVertOutlinedIcon from '@mui/icons-material/MoreVertOutlined';
 import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
-import KeyboardArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardArrowLeftOutlined';
-import KeyboardArrowRightOutlinedIcon from '@mui/icons-material/KeyboardArrowRightOutlined';
 import PlaceOutlinedIcon from '@mui/icons-material/PlaceOutlined';
 import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined';
+import StatusBadge from '@/components/admin/shared/StatusBadge';
+import TablePagination from '@/components/admin/shared/TablePagination';
+import { outlineButtonSx, primaryButtonSx } from '@/lib/admin/adminButtonStyles';
 import type { DisputeRow, ReportStatus } from '@/lib/admin/mockData';
 import { disputeRows } from '@/lib/admin/mockData';
-import { brandColors, grayColors } from '@/lib/theme';
+import { grayColors } from '@/lib/theme';
 
 const statusStyles: Record<
   ReportStatus,
@@ -21,23 +22,6 @@ const statusStyles: Record<
   'Pending from Seller': { bg: '#F9FAFB', border: '#EAECF0', text: '#344054' },
   Resolved: { bg: '#ECFDF3', border: '#ABEFC6', text: '#067647' },
 };
-
-function StatusBadge({ status }: { status: ReportStatus }) {
-  const style = statusStyles[status];
-
-  return (
-    <span
-      className="inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-medium leading-4"
-      style={{
-        backgroundColor: style.bg,
-        borderColor: style.border,
-        color: style.text,
-      }}
-    >
-      {status}
-    </span>
-  );
-}
 
 function PersonCell({ name, role }: { name: string; role: string }) {
   return (
@@ -65,42 +49,6 @@ function BookingDetailsCell({ row }: { row: DisputeRow }) {
     </div>
   );
 }
-
-const outlineButtonSx = {
-  borderRadius: '1000px',
-  border: `1px solid ${grayColors[300]}`,
-  bgcolor: '#FFFFFF',
-  boxShadow: '0px 1px 2px 0px rgba(16, 24, 40, 0.05)',
-  px: '14px',
-  py: '10px',
-  fontSize: '14px',
-  fontWeight: 600,
-  lineHeight: '20px',
-  color: grayColors[700],
-  '&:hover': {
-    bgcolor: '#F9FAFB',
-    borderColor: grayColors[300],
-  },
-};
-
-const primaryButtonSx = {
-  borderRadius: '1000px',
-  border: `1px solid ${brandColors[300]}`,
-  backgroundImage:
-    'linear-gradient(184.75deg, rgb(195, 134, 255) 5.31%, rgb(150, 67, 232) 87.07%)',
-  boxShadow: '0px 1px 2px 0px rgba(16, 24, 40, 0.05)',
-  px: '14px',
-  py: '8px',
-  fontSize: '13px',
-  fontWeight: 600,
-  lineHeight: '20px',
-  color: '#FFFFFF',
-  whiteSpace: 'nowrap',
-  '&:hover': {
-    backgroundImage:
-      'linear-gradient(184.75deg, rgb(183, 110, 255) 5.31%, rgb(117, 53, 181) 87.07%)',
-  },
-};
 
 export default function DisputesTable() {
   return (
@@ -172,7 +120,12 @@ export default function DisputesTable() {
                   <PersonCell name={row.seller.name} role={row.seller.role} />
                 </td>
                 <td className="px-6 py-4 text-center">
-                  <StatusBadge status={row.status} />
+                  <StatusBadge
+                    label={row.status}
+                    bg={statusStyles[row.status].bg}
+                    border={statusStyles[row.status].border}
+                    text={statusStyles[row.status].text}
+                  />
                 </td>
                 <td className="px-6 py-4">
                   <PersonCell name={row.reportedBy.name} role={row.reportedBy.role} />
@@ -188,43 +141,7 @@ export default function DisputesTable() {
         </table>
       </div>
 
-      <div className="flex items-center justify-between border-t border-[#EAECF0] px-6 py-4">
-        <Button
-          disableElevation
-          startIcon={<KeyboardArrowLeftOutlinedIcon />}
-          sx={outlineButtonSx}
-        >
-          Previous
-        </Button>
-        <div className="flex items-center gap-1">
-          {[1, 2, 3, '...', 8, 9, 10].map((page, index) =>
-            page === '...' ? (
-              <span key={`ellipsis-${index}`} className="px-2 text-sm text-[#667085]">
-                ...
-              </span>
-            ) : (
-              <button
-                key={page}
-                type="button"
-                className={`flex size-9 items-center justify-center rounded-lg text-sm font-medium ${
-                  page === 1
-                    ? 'bg-[#F9FAFB] text-[#182230]'
-                    : 'text-[#475467] hover:bg-[#F9FAFB]'
-                }`}
-              >
-                {page}
-              </button>
-            ),
-          )}
-        </div>
-        <Button
-          disableElevation
-          endIcon={<KeyboardArrowRightOutlinedIcon />}
-          sx={outlineButtonSx}
-        >
-          Next
-        </Button>
-      </div>
+      <TablePagination />
     </section>
   );
 }

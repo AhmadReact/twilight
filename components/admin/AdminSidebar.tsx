@@ -2,11 +2,13 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import IconButton from '@mui/material/IconButton';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import { adminFooterNavItems, adminMainNavItems } from '@/lib/admin/navigation';
+import { useAppDispatch } from '@/lib/store/hooks';
+import { clearUser } from '@/lib/store/slices/userSlice';
 import { grayColors } from '@/lib/theme';
 
 const navIconSx = { fontSize: 24, color: '#667085' };
@@ -45,6 +47,13 @@ function NavItem({
 
 export default function AdminSidebar() {
   const pathname = usePathname();
+  const router = useRouter();
+  const dispatch = useAppDispatch();
+
+  const handleLogout = () => {
+    dispatch(clearUser());
+    router.replace('/login');
+  };
 
   const isActive = (href: string) => {
     if (href === '/admin/dashboard') {
@@ -109,8 +118,7 @@ export default function AdminSidebar() {
 
             <IconButton
               aria-label="Log out"
-              href="/login"
-              LinkComponent={Link}
+              onClick={handleLogout}
               sx={{
                 position: 'absolute',
                 right: 0,

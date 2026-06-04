@@ -2,12 +2,22 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import TextField from '@mui/material/TextField';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
+import { mockAdminUser, validateMockCredentials } from '@/lib/auth/mockCredentials';
+import { useAppDispatch, useAppSelector } from '@/lib/store/hooks';
+import {
+  selectIsAuthenticated,
+  selectUserError,
+  setError,
+  setUser,
+} from '@/lib/store/slices/userSlice';
 import { brandColors, grayColors, loginFieldSx } from '@/lib/theme';
 import LoginBackgroundPattern from '@/components/login/LoginBackgroundPattern';
 
@@ -24,6 +34,17 @@ const initialValues = {
 };
 
 export default function LoginPage() {
+  const router = useRouter();
+  const dispatch = useAppDispatch();
+  const isAuthenticated = useAppSelector(selectIsAuthenticated);
+  const authError = useAppSelector(selectUserError);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      router.replace('/admin/dashboard');
+    }
+  }, [isAuthenticated, router]);
+
   return (
     <main className="relative flex flex-1 flex-col items-center justify-center h-full overflow-hidden bg-white px-8 py-6 sm:py-8">
       <div className="relative z-1 flex w-full max-w-[1280px] flex-col items-center px-8 max-h-full">
@@ -54,9 +75,17 @@ export default function LoginPage() {
           <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
-            onSubmit={(values) => {
-              // TODO: call auth API
-              console.log(values);
+            onSubmit={(values, { setSubmitting }) => {
+              dispatch(setError(null));
+
+              if (!validateMockCredentials(values.email, values.password)) {
+                dispatch(setError('Invalid email or password'));
+                setSubmitting(false);
+                return;
+              }
+
+              dispatch(setUser(mockAdminUser));
+              router.replace('/admin/dashboard');
             }}
           >
             {({ values, errors, touched, handleChange, handleBlur, isSubmitting }) => (
@@ -166,6 +195,12 @@ export default function LoginPage() {
                     Forgot password
                   </Button>
                 </div>
+
+                {authError ? (
+                  <p className="w-full text-sm font-medium leading-5 text-[#D92D20]" role="alert">
+                    {authError}
+                  </p>
+                ) : null}
 
                 <Button
                   type="submit"

@@ -7,24 +7,8 @@ import FilterListOutlinedIcon from '@mui/icons-material/FilterListOutlined';
 import MetricCards from '@/components/admin/dashboard/MetricCards';
 import AlertsPanel from '@/components/admin/dashboard/AlertsPanel';
 import DisputesTable from '@/components/admin/dashboard/DisputesTable';
+import { outlineButtonSx } from '@/lib/admin/adminButtonStyles';
 import { grayColors } from '@/lib/theme';
-
-const outlineButtonSx = {
-  borderRadius: '1000px',
-  border: `1px solid ${grayColors[300]}`,
-  bgcolor: '#FFFFFF',
-  boxShadow: '0px 1px 2px 0px rgba(16, 24, 40, 0.05)',
-  px: '14px',
-  py: '10px',
-  fontSize: '14px',
-  fontWeight: 600,
-  lineHeight: '20px',
-  color: grayColors[700],
-  '&:hover': {
-    bgcolor: '#F9FAFB',
-    borderColor: grayColors[300],
-  },
-};
 
 export default function DashboardPage() {
   return (
