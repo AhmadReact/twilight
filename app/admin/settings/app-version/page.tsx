@@ -1,10 +1,5 @@
-import SystemSettingsPlaceholderPage from '@/components/admin/settings/SystemSettingsPlaceholderPage';
+import AppVersionControlPage from '@/components/admin/settings/AppVersionControlPage';
 
 export default function Page() {
-  return (
-    <SystemSettingsPlaceholderPage
-      title="App Version Control"
-      description="Manage app version control."
-    />
-  );
+  return <AppVersionControlPage />;
 }

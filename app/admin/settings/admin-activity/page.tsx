@@ -1,10 +1,5 @@
-import SystemSettingsPlaceholderPage from '@/components/admin/settings/SystemSettingsPlaceholderPage';
+import AdminActivitySettingsPage from '@/components/admin/settings/AdminActivitySettingsPage';
 
 export default function Page() {
-  return (
-    <SystemSettingsPlaceholderPage
-      title="Admin Activity Settings"
-      description="Manage admin activity settings."
-    />
-  );
+  return <AdminActivitySettingsPage />;
 }

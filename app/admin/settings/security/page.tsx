@@ -1,10 +1,5 @@
-import SystemSettingsPlaceholderPage from '@/components/admin/settings/SystemSettingsPlaceholderPage';
+import SecuritySettingsPage from '@/components/admin/settings/SecuritySettingsPage';
 
 export default function Page() {
-  return (
-    <SystemSettingsPlaceholderPage
-      title="Security Settings"
-      description="Manage security settings."
-    />
-  );
+  return <SecuritySettingsPage />;
 }

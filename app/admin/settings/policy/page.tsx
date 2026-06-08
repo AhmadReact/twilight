@@ -1,10 +1,5 @@
-import SystemSettingsPlaceholderPage from '@/components/admin/settings/SystemSettingsPlaceholderPage';
+import PolicySettingsPage from '@/components/admin/settings/PolicySettingsPage';
 
 export default function Page() {
-  return (
-    <SystemSettingsPlaceholderPage
-      title="Policy Settings"
-      description="Manage policy settings."
-    />
-  );
+  return <PolicySettingsPage />;
 }

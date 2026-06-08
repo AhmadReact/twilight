@@ -1,10 +1,5 @@
-import SystemSettingsPlaceholderPage from '@/components/admin/settings/SystemSettingsPlaceholderPage';
+import LimitsAndRulesSettingsPage from '@/components/admin/settings/LimitsAndRulesSettingsPage';
 
 export default function Page() {
-  return (
-    <SystemSettingsPlaceholderPage
-      title="Limits and Rules"
-      description="Manage limits and rules."
-    />
-  );
+  return <LimitsAndRulesSettingsPage />;
 }

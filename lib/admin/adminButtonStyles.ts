@@ -49,3 +49,25 @@ export const primaryButtonSx = {
       'linear-gradient(184.75deg, rgb(183, 110, 255) 5.31%, rgb(117, 53, 181) 87.07%)',
   },
 };
+
+export const disabledActionButtonSx = {
+  borderRadius: '1000px',
+  border: '1px solid #EAECF0',
+  bgcolor: '#F2F4F7',
+  boxShadow: '0px 1px 2px 0px rgba(16, 24, 40, 0.05)',
+  px: '12px',
+  py: '8px',
+  fontSize: '14px',
+  fontWeight: 600,
+  lineHeight: '20px',
+  color: '#98A2B3',
+  '&:hover': {
+    bgcolor: '#F2F4F7',
+    borderColor: '#EAECF0',
+  },
+  '&.Mui-disabled': {
+    color: '#98A2B3',
+    bgcolor: '#F2F4F7',
+    borderColor: '#EAECF0',
+  },
+};
