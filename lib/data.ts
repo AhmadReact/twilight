@@ -133,6 +133,54 @@ export const testimonials = [
     initials: "MT",
     color: "bg-sky-600",
   },
+  {
+    quote:
+      "Our online store needed reliable cloud infrastructure and secure remote access for our team. Twilight delivered a modern setup that scales with our growth.",
+    name: "Rachel Kim",
+    role: "Founder, Bloom & Co.",
+    initials: "RK",
+    color: "bg-violet-600",
+  },
+  {
+    quote:
+      "Migrating our entire clinic to Microsoft 365 felt overwhelming until Twilight stepped in. They handled everything with zero downtime and trained our staff thoroughly.",
+    name: "Dr. David Chen",
+    role: "Chief Medical Officer",
+    initials: "DC",
+    color: "bg-teal-600",
+  },
+  {
+    quote:
+      "Twilight's Intune rollout let us manage every device in our firm from one dashboard. Support tickets dropped by half within the first month.",
+    name: "Emily Rodriguez",
+    role: "Office Manager",
+    initials: "ER",
+    color: "bg-rose-600",
+  },
+  {
+    quote:
+      "We needed Zero Trust security without slowing our team down. Twilight designed a solution that keeps us protected while our people stay productive.",
+    name: "Robert Hayes",
+    role: "CEO, Hayes Logistics",
+    initials: "RH",
+    color: "bg-amber-600",
+  },
+  {
+    quote:
+      "Jamf Pro management for our Mac fleet was set up perfectly. Our creative team loves their devices and our IT team finally has full visibility and control.",
+    name: "Lisa Park",
+    role: "Creative Director",
+    initials: "LP",
+    color: "bg-emerald-600",
+  },
+  {
+    quote:
+      "From the initial security assessment to ongoing 24/7 monitoring, Twilight has been a true partner. I recommend them to every business owner I know.",
+    name: "Thomas Wright",
+    role: "Operations Director",
+    initials: "TW",
+    color: "bg-orange-600",
+  },
 ];
 
 export const partners = [
