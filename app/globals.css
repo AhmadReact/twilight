@@ -30,6 +30,27 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Twilight Technologies brand typography & palette */
+.twilight-brand {
+  font-family: var(--font-poppins), system-ui, sans-serif;
+  /* Brand palette overrides (Vivid Blue + Raisin Black) */
+  --primary: #0c3ea3;
+  --primary-dark: #082e7a;
+  --navy: #252424;
+  --navy-light: #3a3838;
+}
+
+.twilight-brand h1,
+.twilight-brand h2,
+.twilight-brand h3,
+.twilight-brand h4 {
+  font-family: var(--font-ubuntu), system-ui, sans-serif;
+}
+
+.font-logo {
+  font-family: var(--font-orbitron), system-ui, sans-serif;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
