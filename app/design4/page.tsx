@@ -124,89 +124,121 @@ function Header() {
 
 /* ─── Hero Illustration ─── */
 function HeroIllustration() {
-  const badges = [
-    { label: "Entra ID", style: { top: "6%", left: "2%" } },
-    { label: "Intune", style: { top: "18%", right: "0%" } },
-    { label: "Security", style: { top: "2%", right: "20%" } },
-    { label: "Conditional Access", style: { bottom: "32%", left: "-2%" } },
-    { label: "SSO", style: { bottom: "18%", right: "-2%" } },
-  ];
+  const topBadges = ["Entra ID", "Security", "Intune"];
+  const bottomBadges = ["Conditional Access", "SSO"];
 
   return (
-    <div className="relative mx-auto w-full max-w-lg px-2">
-      <div className="relative rounded-2xl bg-gradient-to-br from-blue-50 via-slate-50 to-indigo-50 p-8 shadow-lg ring-1 ring-border/50">
-        {/* Dotted connector lines */}
-        <svg
-          className="pointer-events-none absolute inset-0 h-full w-full text-primary/20"
-          aria-hidden="true"
-        >
-          <line x1="18%" y1="14%" x2="38%" y2="38%" stroke="currentColor" strokeWidth="1.5" strokeDasharray="4 4" />
-          <line x1="82%" y1="22%" x2="62%" y2="38%" stroke="currentColor" strokeWidth="1.5" strokeDasharray="4 4" />
-          <line x1="72%" y1="10%" x2="58%" y2="35%" stroke="currentColor" strokeWidth="1.5" strokeDasharray="4 4" />
-          <line x1="12%" y1="62%" x2="35%" y2="52%" stroke="currentColor" strokeWidth="1.5" strokeDasharray="4 4" />
-          <line x1="88%" y1="72%" x2="68%" y2="55%" stroke="currentColor" strokeWidth="1.5" strokeDasharray="4 4" />
-        </svg>
+    <div className="relative mx-auto w-full max-w-xl">
+      <div className="absolute -inset-3 rounded-3xl bg-gradient-to-br from-blue-100/60 via-indigo-50/40 to-violet-100/50 blur-2xl" />
 
-        {badges.map((badge) => (
-          <div
-            key={badge.label}
-            className="absolute z-10 rounded-lg border border-border/60 bg-white px-3 py-1.5 text-[11px] font-semibold text-navy shadow-md"
-            style={badge.style}
-          >
-            {badge.label}
-          </div>
-        ))}
+      <div className="relative rounded-2xl border border-border bg-gradient-to-br from-slate-50 to-blue-50/50 p-6 shadow-xl ring-1 ring-border/40 sm:p-8">
+        {/* Top service badges */}
+        <div className="mb-5 flex flex-wrap items-center justify-center gap-2 sm:gap-2.5">
+          {topBadges.map((label) => (
+            <span
+              key={label}
+              className="rounded-full border border-border bg-white px-3.5 py-1.5 text-xs font-semibold text-navy shadow-sm"
+            >
+              {label}
+            </span>
+          ))}
+        </div>
 
-        {/* Isometric platform */}
-        <div className="relative mx-auto mt-6 max-w-xs">
-          <div className="mx-auto h-3 w-4/5 rounded-full bg-slate-300/40" />
+        {/* Device platform */}
+        <div className="relative mx-auto max-w-md">
+          <div className="absolute inset-x-6 bottom-2 h-6 rounded-full bg-slate-300/30 blur-md" />
 
-          <div className="relative -mt-1 flex items-end justify-center gap-3 pt-2">
-            {/* Monitor — Microsoft 365 */}
-            <div className="flex flex-col items-center gap-1.5">
-              <div className="flex h-[88px] w-[120px] flex-col overflow-hidden rounded-lg bg-slate-800 shadow-xl ring-1 ring-slate-700">
-                <div className="flex h-4 items-center gap-1 border-b border-slate-700 bg-slate-900 px-2">
-                  <div className="h-1.5 w-1.5 rounded-full bg-red-400/70" />
-                  <div className="h-1.5 w-1.5 rounded-full bg-amber-400/70" />
-                  <div className="h-1.5 w-1.5 rounded-full bg-emerald-400/70" />
-                </div>
-                <div className="flex flex-1 flex-col items-center justify-center gap-1.5 p-2">
-                  <div className="grid grid-cols-2 gap-0.5">
-                    {["#f25022", "#7fba00", "#00a4ef", "#ffb900"].map((c) => (
-                      <div key={c} className="h-3 w-3 rounded-[2px]" style={{ backgroundColor: c }} />
-                    ))}
+          <div className="relative rounded-xl border border-border/60 bg-white/80 p-5 shadow-inner sm:p-6">
+            <div className="flex items-end justify-center gap-4 sm:gap-6">
+              {/* Microsoft 365 monitor */}
+              <div className="flex flex-1 flex-col items-center gap-2">
+                <div className="w-full max-w-[140px] overflow-hidden rounded-lg bg-slate-800 shadow-lg ring-1 ring-slate-700">
+                  <div className="flex h-5 items-center gap-1 border-b border-slate-700 bg-slate-900 px-2">
+                    <div className="h-2 w-2 rounded-full bg-red-400/80" />
+                    <div className="h-2 w-2 rounded-full bg-amber-400/80" />
+                    <div className="h-2 w-2 rounded-full bg-emerald-400/80" />
                   </div>
-                  <span className="text-[9px] font-bold text-white">Microsoft 365</span>
+                  <div className="flex flex-col items-center justify-center gap-2 px-3 py-4">
+                    <div className="grid grid-cols-2 gap-1">
+                      {["#f25022", "#7fba00", "#00a4ef", "#ffb900"].map((c) => (
+                        <div
+                          key={c}
+                          className="h-4 w-4 rounded-[3px]"
+                          style={{ backgroundColor: c }}
+                        />
+                      ))}
+                    </div>
+                    <span className="text-center text-[11px] font-bold leading-tight text-white">
+                      Microsoft 365
+                    </span>
+                  </div>
                 </div>
+                <div className="h-2 w-14 rounded-sm bg-slate-500" />
+                <div className="h-1 w-20 rounded-full bg-slate-300" />
               </div>
-              <div className="h-5 w-14 rounded-sm bg-slate-600" />
-              <div className="h-1 w-20 rounded-full bg-slate-400/60" />
-            </div>
 
-            {/* Laptop */}
-            <div className="flex flex-col items-center gap-1.5">
-              <div className="h-[52px] w-[72px] rounded-md bg-slate-700 shadow-lg ring-1 ring-slate-600">
-                <div className="mx-2 mt-2 h-1 rounded bg-primary/50" />
-                <div className="mx-2 mt-1.5 space-y-1">
-                  <div className="h-1 rounded bg-white/20" />
-                  <div className="h-1 w-3/4 rounded bg-white/10" />
+              {/* Connection hub */}
+              <div className="mb-10 hidden flex-col items-center gap-1 sm:flex">
+                <div className="h-px w-6 bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
+                <div className="flex h-8 w-8 items-center justify-center rounded-full border border-primary/20 bg-primary/10">
+                  <svg
+                    className="h-4 w-4 text-primary"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+                    />
+                  </svg>
                 </div>
+                <div className="h-px w-6 bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
               </div>
-              <div className="h-1.5 w-16 rounded-sm bg-slate-500" />
-            </div>
 
-            {/* Phone — Jamf Pro */}
-            <div className="flex flex-col items-center gap-1.5">
-              <div className="flex h-[72px] w-[38px] flex-col items-center rounded-lg border-2 border-slate-600 bg-slate-800 shadow-xl">
-                <div className="mt-1.5 h-1 w-5 rounded-full bg-slate-600" />
-                <div className="mt-2 flex flex-col items-center gap-1 px-1">
-                  <span className="text-[7px] font-bold text-emerald-400">jamf</span>
-                  <span className="text-[6px] font-bold text-emerald-400/70">PRO</span>
+              {/* Jamf Pro phone */}
+              <div className="flex flex-1 flex-col items-center gap-2">
+                <div className="flex w-full max-w-[140px] flex-col items-center rounded-lg border-2 border-slate-600 bg-slate-800 px-3 py-4 shadow-lg ring-1 ring-slate-700">
+                  <div className="mb-2 flex h-9 w-9 items-center justify-center rounded-lg bg-white/10">
+                    <svg
+                      className="h-5 w-5 text-white"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                    >
+                      <path d="M18.71 19.5c-.83 1.24-1.71 2.45-2.66 3.66-1.06 1.24-2.53 2.01-4.12 2.01-1.59 0-3.06-.77-4.12-2.01-1.05-1.21-1.83-2.42-2.66-3.66C4.25 17.25 3 14.88 3 12.01c0-4.97 4.03-9 9-9s9 4.03 9 9c0 2.87-1.25 5.24-3.29 7.49z" />
+                    </svg>
+                  </div>
+                  <span className="text-center text-[11px] font-bold leading-tight text-emerald-400">
+                    jamf PRO
+                  </span>
+                  <span className="mt-0.5 text-[9px] font-medium text-white/50">
+                    macOS & iOS
+                  </span>
                 </div>
+                <div className="h-1 w-20 rounded-full bg-slate-300" />
               </div>
             </div>
           </div>
         </div>
+
+        {/* Bottom service badges */}
+        <div className="mt-5 flex flex-wrap items-center justify-center gap-2 sm:gap-2.5">
+          {bottomBadges.map((label) => (
+            <span
+              key={label}
+              className="rounded-full border border-border bg-white px-3.5 py-1.5 text-xs font-semibold text-navy shadow-sm"
+            >
+              {label}
+            </span>
+          ))}
+        </div>
+
+        {/* Caption */}
+        <p className="mt-5 text-center text-xs font-medium text-slate">
+          Unified Microsoft cloud & Apple device management
+        </p>
       </div>
     </div>
   );
