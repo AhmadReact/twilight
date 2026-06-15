@@ -35,3 +35,76 @@ body {
   color: var(--foreground);
   font-family: var(--font-geist-sans), system-ui, sans-serif;
 }
+
+/* Scroll & entrance animations (WhoCan-style reveal) */
+.animate-on-scroll {
+  opacity: 0;
+  transition-property: opacity, transform;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.animate-on-scroll[data-animation="fade-up"] {
+  transform: translateY(32px);
+}
+
+.animate-on-scroll[data-animation="fade-in"] {
+  transform: none;
+}
+
+.animate-on-scroll[data-animation="fade-left"] {
+  transform: translateX(-32px);
+}
+
+.animate-on-scroll[data-animation="fade-right"] {
+  transform: translateX(32px);
+}
+
+.animate-on-scroll[data-animation="scale-up"] {
+  transform: scale(0.92);
+}
+
+.animate-on-scroll.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-marquee {
+  animation: marquee 28s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-on-scroll {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .animate-float,
+  .animate-marquee {
+    animation: none;
+  }
+}

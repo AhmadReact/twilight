@@ -1,27 +1,31 @@
 "use client";
 
 import { ArrowRight } from "./icons";
+import { AnimateOnScroll } from "./AnimateOnScroll";
 
 export function Contact() {
   return (
     <section id="contact" className="bg-navy py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-2">
-          <div>
-            <h2 className="text-3xl font-bold text-white sm:text-4xl">
-              Ready to Secure and Optimize Your IT?
-            </h2>
-            <p className="mt-4 text-lg leading-relaxed text-slate-300">
-              Schedule a free consultation with our team. We&apos;ll assess your
-              current infrastructure and recommend solutions tailored to your
-              industry and compliance requirements.
-            </p>
-          </div>
+          <AnimateOnScroll animation="fade-left">
+            <div>
+              <h2 className="text-3xl font-bold text-white sm:text-4xl">
+                Ready to Secure and Optimize Your IT?
+              </h2>
+              <p className="mt-4 text-lg leading-relaxed text-slate-300">
+                Schedule a free consultation with our team. We&apos;ll assess your
+                current infrastructure and recommend solutions tailored to your
+                industry and compliance requirements.
+              </p>
+            </div>
+          </AnimateOnScroll>
 
-          <form
-            className="rounded-xl bg-white p-6 shadow-xl sm:p-8"
-            onSubmit={(e) => e.preventDefault()}
-          >
+          <AnimateOnScroll animation="fade-right" delay={150}>
+            <form
+              className="rounded-xl bg-white p-6 shadow-xl sm:p-8"
+              onSubmit={(e) => e.preventDefault()}
+            >
             <div className="grid gap-4 sm:grid-cols-2">
               <div>
                 <label
@@ -114,7 +118,8 @@ export function Contact() {
               Book Consultation
               <ArrowRight />
             </button>
-          </form>
+            </form>
+          </AnimateOnScroll>
         </div>
       </div>
     </section>
