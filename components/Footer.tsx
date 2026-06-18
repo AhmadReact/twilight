@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Logo } from "./icons";
 
 export function Footer() {
@@ -15,6 +16,12 @@ export function Footer() {
           </p>
 
           <div className="flex items-center gap-6">
+            <Link
+              href="/about-us"
+              className="text-sm text-slate-400 transition-colors hover:text-white"
+            >
+              About Us
+            </Link>
             <a
               href="#"
               className="text-sm text-slate-400 transition-colors hover:text-white"

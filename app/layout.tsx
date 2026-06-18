@@ -26,9 +26,9 @@ const ubuntu = Ubuntu({
 });
 
 export const metadata: Metadata = {
-  title: "Twilight Technologies | IT Consulting & Cloud Solutions",
+  title: "Twilight Technologies | B2B Reviews & Ratings You Can Trust",
   description:
-    "Secure IT consulting for medical practices, law firms, accounting firms, and e-commerce. Microsoft 365, Intune, Jamf Pro, Entra ID, and security services.",
+    "Browse 1.2M verified reviews across 80,000 firms in 60+ categories and 130 countries. Find the right development partner for your next project.",
 };
 
 export default function RootLayout({
