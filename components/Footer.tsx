@@ -22,18 +22,18 @@ export function Footer() {
             >
               About Us
             </Link>
-            <a
-              href="#"
+            <Link
+              href="/privacy-policy"
               className="text-sm text-slate-400 transition-colors hover:text-white"
             >
               Privacy Policy
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link
+              href="/terms-and-conditions"
               className="text-sm text-slate-400 transition-colors hover:text-white"
             >
-              Terms of Service
-            </a>
+              Terms &amp; Conditions
+            </Link>
             <div className="flex gap-3">
               <a
                 href="#"

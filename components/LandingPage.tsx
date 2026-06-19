@@ -47,19 +47,6 @@ function Star({ className = "h-4 w-4" }: { className?: string }) {
   );
 }
 
-function Stars({ value = 5 }: { value?: number }) {
-  return (
-    <div className="flex items-center gap-0.5 text-[#f5a623]">
-      {Array.from({ length: 5 }).map((_, i) => (
-        <Star
-          key={i}
-          className={`h-4 w-4 ${i < value ? "" : "text-slate-300"}`}
-        />
-      ))}
-    </div>
-  );
-}
-
 function ArrowRight({ className = "h-4 w-4" }: { className?: string }) {
   return (
     <svg
@@ -95,18 +82,16 @@ function Logo({ className = "h-9 w-auto" }: { className?: string }) {
 /* ─── Data ─── */
 const navLinks = [
   { label: "Services", href: "#services" },
-  { label: "Directory", href: "#directory" },
   { label: "Reviews", href: "#reviews" },
   { label: "Software", href: "#software" },
-  { label: "Insights", href: "#insights" },
   { label: "About Us", href: "/about-us" },
 ];
 
 const heroStats = [
-  { value: "80,000", label: "Verified firms" },
-  { value: "1.2M", label: "Client reviews" },
-  { value: "60+", label: "Categories" },
-  { value: "130", label: "Countries" },
+  { value: "10+", label: "Years of experience" },
+  { value: "100+", label: "Projects delivered" },
+  { value: "50+", label: "Happy clients" },
+  { value: "2", label: "Global offices" },
 ];
 
 const citedBy = [
@@ -122,286 +107,46 @@ const categories = [
   {
     title: "Software Development",
     description: "Custom software, SaaS, enterprise & legacy modernization.",
-    count: "12,400+ firms",
+    count: "SaaS & enterprise",
     icon: "code",
     tint: "bg-blue-50 text-blue-700",
   },
   {
     title: "Web & App Development",
     description: "Websites, mobile apps, e-commerce and progressive web apps.",
-    count: "18,900+ firms",
+    count: "Web & mobile",
     icon: "web",
     tint: "bg-sky-50 text-sky-600",
   },
   {
     title: "Design",
     description: "UI/UX, product design, branding and creative services.",
-    count: "9,200+ firms",
+    count: "UI/UX & branding",
     icon: "design",
     tint: "bg-violet-50 text-violet-600",
   },
   {
     title: "Marketing & Advertising",
     description: "SEO, PPC, social media, content and growth marketing.",
-    count: "15,600+ firms",
+    count: "SEO & growth",
     icon: "megaphone",
     tint: "bg-rose-50 text-rose-600",
   },
   {
     title: "Latest Tech",
     description: "Blockchain, IoT, AR/VR and emerging technologies.",
-    count: "6,800+ firms",
+    count: "Emerging tech",
     icon: "spark",
     tint: "bg-emerald-50 text-emerald-600",
   },
   {
     title: "Business & IT Services",
     description: "Consulting, cloud, BPO, QA and managed IT services.",
-    count: "11,300+ firms",
+    count: "Cloud & managed IT",
     icon: "briefcase",
     tint: "bg-indigo-50 text-indigo-600",
   },
 ];
-
-const directoryTabs = [
-  "Mobile App Development",
-  "Software Development",
-  "Web Development",
-  "Digital Marketing",
-  "Web Designing",
-];
-
-const firmsByTab: Record<
-  string,
-  {
-    name: string;
-    rating: number;
-    reviews: number;
-    rate: string;
-    location: string;
-  }[]
-> = {
-  "Mobile App Development": [
-    {
-      name: "Utility",
-      rating: 4.9,
-      reviews: 64,
-      rate: "$100 - $149/hr",
-      location: "New York, USA",
-    },
-    {
-      name: "AppMakers USA",
-      rating: 4.9,
-      reviews: 51,
-      rate: "$50 - $99/hr",
-      location: "Los Angeles, USA",
-    },
-    {
-      name: "Instinctools",
-      rating: 4.8,
-      reviews: 73,
-      rate: "$50 - $99/hr",
-      location: "Schwerin, Germany",
-    },
-    {
-      name: "SDLC Corp",
-      rating: 4.8,
-      reviews: 88,
-      rate: "$25 - $49/hr",
-      location: "Jaipur, India",
-    },
-    {
-      name: "OpenXcell",
-      rating: 4.9,
-      reviews: 42,
-      rate: "$25 - $49/hr",
-      location: "Ahmedabad, India",
-    },
-    {
-      name: "Closeloop Technologies",
-      rating: 5.0,
-      reviews: 39,
-      rate: "$50 - $99/hr",
-      location: "Mountain View, USA",
-    },
-  ],
-  "Software Development": [
-    {
-      name: "SDLC Corp",
-      rating: 4.8,
-      reviews: 88,
-      rate: "$25 - $49/hr",
-      location: "Jaipur, India",
-    },
-    {
-      name: "Utility",
-      rating: 4.9,
-      reviews: 64,
-      rate: "$100 - $149/hr",
-      location: "New York, USA",
-    },
-    {
-      name: "Instinctools",
-      rating: 4.8,
-      reviews: 73,
-      rate: "$50 - $99/hr",
-      location: "Schwerin, Germany",
-    },
-    {
-      name: "Closeloop Technologies",
-      rating: 5.0,
-      reviews: 39,
-      rate: "$50 - $99/hr",
-      location: "Mountain View, USA",
-    },
-    {
-      name: "Sigli",
-      rating: 4.7,
-      reviews: 28,
-      rate: "$50 - $99/hr",
-      location: "Tallinn, Estonia",
-    },
-    {
-      name: "Saigon Technology",
-      rating: 4.9,
-      reviews: 61,
-      rate: "$25 - $49/hr",
-      location: "Ho Chi Minh, Vietnam",
-    },
-  ],
-  "Web Development": [
-    {
-      name: "Instinctools",
-      rating: 4.8,
-      reviews: 73,
-      rate: "$50 - $99/hr",
-      location: "Schwerin, Germany",
-    },
-    {
-      name: "SDLC Corp",
-      rating: 4.8,
-      reviews: 88,
-      rate: "$25 - $49/hr",
-      location: "Jaipur, India",
-    },
-    {
-      name: "Funnel Boost Media",
-      rating: 4.9,
-      reviews: 47,
-      rate: "$100 - $149/hr",
-      location: "San Antonio, USA",
-    },
-    {
-      name: "WP Creative",
-      rating: 4.8,
-      reviews: 33,
-      rate: "$50 - $99/hr",
-      location: "Sydney, Australia",
-    },
-    {
-      name: "Chudovo",
-      rating: 4.7,
-      reviews: 25,
-      rate: "$50 - $99/hr",
-      location: "Düsseldorf, Germany",
-    },
-    {
-      name: "3 SIDED CUBE",
-      rating: 4.9,
-      reviews: 36,
-      rate: "$150 - $199/hr",
-      location: "Bournemouth, UK",
-    },
-  ],
-  "Digital Marketing": [
-    {
-      name: "WebFX",
-      rating: 4.9,
-      reviews: 132,
-      rate: "$100 - $149/hr",
-      location: "Harrisburg, USA",
-    },
-    {
-      name: "Searchbloom",
-      rating: 5.0,
-      reviews: 76,
-      rate: "$100 - $149/hr",
-      location: "Draper, USA",
-    },
-    {
-      name: "SmartSites",
-      rating: 4.9,
-      reviews: 98,
-      rate: "$100 - $149/hr",
-      location: "Paramus, USA",
-    },
-    {
-      name: "SEOValley Solutions",
-      rating: 4.8,
-      reviews: 54,
-      rate: "$25 - $49/hr",
-      location: "Bhopal, India",
-    },
-    {
-      name: "Funnel Boost Media",
-      rating: 4.9,
-      reviews: 47,
-      rate: "$100 - $149/hr",
-      location: "San Antonio, USA",
-    },
-    {
-      name: "Sure Oak",
-      rating: 4.8,
-      reviews: 41,
-      rate: "$150 - $199/hr",
-      location: "Brooklyn, USA",
-    },
-  ],
-  "Web Designing": [
-    {
-      name: "WebFX",
-      rating: 4.9,
-      reviews: 132,
-      rate: "$100 - $149/hr",
-      location: "Harrisburg, USA",
-    },
-    {
-      name: "Instinctools",
-      rating: 4.8,
-      reviews: 73,
-      rate: "$50 - $99/hr",
-      location: "Schwerin, Germany",
-    },
-    {
-      name: "SmartSites",
-      rating: 4.9,
-      reviews: 98,
-      rate: "$100 - $149/hr",
-      location: "Paramus, USA",
-    },
-    {
-      name: "Creative Navy",
-      rating: 4.8,
-      reviews: 29,
-      rate: "$50 - $99/hr",
-      location: "London, UK",
-    },
-    {
-      name: "Utility",
-      rating: 4.9,
-      reviews: 64,
-      rate: "$100 - $149/hr",
-      location: "New York, USA",
-    },
-    {
-      name: "Goji Labs",
-      rating: 4.9,
-      reviews: 38,
-      rate: "$100 - $149/hr",
-      location: "Los Angeles, USA",
-    },
-  ],
-};
 
 const reviews = [
   {
@@ -448,90 +193,64 @@ const reviews = [
   },
 ];
 
-const software = [
+const technologies = [
   {
-    name: "ManageEngine ServiceDesk Plus",
-    category: "IT Service Management",
-    trial: "30 Days",
-    rating: 4.7,
+    name: "Flutter",
+    category: "Mobile Development",
+    description:
+      "Cross-platform apps for iOS and Android from a single codebase.",
   },
   {
-    name: "Site24x7",
-    category: "Website Monitoring",
-    trial: "30 Days",
-    rating: 4.6,
+    name: "Android",
+    category: "Mobile Development",
+    description: "Native Android applications built for performance and scale.",
   },
   {
-    name: "SuperOps.ai RMM",
-    category: "RMM Software",
-    trial: "N/A",
-    rating: 4.8,
+    name: "Next.js",
+    category: "Web Development",
+    description: "Modern React frameworks for fast, SEO-friendly web apps.",
   },
   {
-    name: "Hostaway",
-    category: "Property Management",
-    trial: "N/A",
-    rating: 4.7,
+    name: "Laravel",
+    category: "Backend Development",
+    description: "Robust PHP frameworks for APIs, admin panels, and backends.",
   },
   {
-    name: "Freshservice",
-    category: "Help Desk",
-    trial: "Available",
-    rating: 4.6,
+    name: "Node.js",
+    category: "Backend Development",
+    description: "Scalable server-side JavaScript for APIs and real-time apps.",
   },
   {
-    name: "Freshdesk",
-    category: "Customer Support",
-    trial: "30+ days",
-    rating: 4.5,
+    name: "Figma",
+    category: "UI/UX Design",
+    description:
+      "Collaborative design and prototyping for polished user experiences.",
   },
 ];
 
 const stories = [
   {
     quote:
-      "Twilight Technologies has played a pivotal role in elevating our visibility in a competitive market. The detailed reviews help prospective clients trust us before the first conversation.",
-    author: "CEO, AgileTech Vietnam",
-  },
-  {
-    quote:
-      "Twilight Technologies has been exceptional in bridging the gap between potential clients and companies like ours. It adds credibility and assurance about our capabilities.",
+      "Twilight Technologies understood our requirements quickly and delivered a clean, professional product. Communication was clear throughout the project.",
     author: "CEO, Closeloop Technologies",
   },
   {
     quote:
-      "Twilight Technologies has been a great inbound lead source for us. We are very happy with our decision to list on the platform.",
-    author: "CEO, Labrys",
+      "A positive experience marked by strong collaboration and technical expertise. They helped us bring our vision to life on schedule.",
+    author: "CTO, ThaiSoft Tech",
+  },
+  {
+    quote:
+      "Reliable end-to-end support that streamlined our operations. We look forward to continuing to work with their team.",
+    author: "Marketing Director, Cash4Car",
   },
 ];
 
 const trustPoints = [
-  "All companies on Twilight Technologies are verified for authenticity.",
-  "Company information is regularly updated and accurate.",
-  "Twilight Technologies does not manipulate ratings or reviews.",
-  "Our research is transparent and unbiased.",
-];
-
-const insights = [
-  {
-    tag: "Digital Marketing",
-    title:
-      "SERP Visibility in 2026: Why Rankings Alone No Longer Drive Organic Traffic",
-    excerpt:
-      "How zero-click searches and SERP features are reshaping organic traffic.",
-  },
-  {
-    tag: "Digital Marketing",
-    title: "SEO Statistics 2026: 35+ Verified Stats on SERP Visibility",
-    excerpt:
-      "58.5% of searches are zero-click. See what's changing in search behavior.",
-  },
-  {
-    tag: "Mobile App Development",
-    title: "The Twilight 4-Phase Model for Building a Successful Neobank",
-    excerpt:
-      "Ensure compliance, scalable growth and lower failure risk while building your digital bank.",
-  },
+  "Dedicated professionals focused on delivering results for every client.",
+  "Transparent communication and collaboration from discovery through launch.",
+  "Scalable, custom-built software tailored to your business goals.",
+  "Trusted by startups and enterprises worldwide since 2015.",
 ];
 
 /* ─── Category icons ─── */
@@ -568,8 +287,11 @@ function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-white/95 backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-3.5 sm:px-6 lg:px-8">
-        <a href="#top">
-          <Logo />
+        <a
+          href="#top"
+          className="inline-flex shrink-0 items-center overflow-hidden max-md:h-10 max-md:w-36"
+        >
+          <Logo className="h-10 w-auto max-md:relative max-md:left-10" />
         </a>
 
         <nav className="hidden items-center gap-6 lg:flex">
@@ -586,25 +308,26 @@ function Header() {
 
         <div className="hidden items-center gap-3 lg:flex">
           <a
-            href="#reviews"
+            href="/about-us#contact"
             className="text-sm font-semibold text-navy/80 transition-colors hover:text-navy"
           >
-            Write a Review
+            Contact Us
           </a>
           <a
-            href="#cta"
+            href="/about-us#contact"
             className="inline-flex items-center gap-1.5 rounded-md px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90"
             style={{ backgroundColor: BLUE }}
           >
-            Get Listed
+            Get a Quote
           </a>
         </div>
 
         <button
           type="button"
-          className="rounded-lg p-2 text-navy lg:hidden"
+          className="relative z-10 shrink-0 rounded-lg p-2 text-navy lg:hidden"
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
+          aria-expanded={open}
         >
           <svg
             className="h-6 w-6"
@@ -644,12 +367,12 @@ function Header() {
               </a>
             ))}
             <a
-              href="#cta"
+              href="/about-us#contact"
               className="mt-2 inline-flex justify-center rounded-md px-4 py-2.5 text-sm font-semibold text-white"
               style={{ backgroundColor: BLUE }}
               onClick={() => setOpen(false)}
             >
-              Get Listed
+              Get a Quote
             </a>
           </div>
         </nav>
@@ -674,18 +397,19 @@ function Hero() {
           style={{ color: BLUE }}
         >
           <TwilightMark className="h-4 w-4" />
-          B2B Reviews &amp; Ratings you can trust
+          Custom Software Development &amp; IT Services
         </span>
 
         <h1 className="mx-auto mt-6 max-w-3xl text-4xl font-extrabold leading-tight tracking-tight text-navy sm:text-5xl lg:text-6xl">
-          Find the right firm
+          Custom software solutions
           <br />
           for your <span style={{ color: BLUE }}>next project</span>
         </h1>
 
         <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-slate">
-          Browse 1.2M verified reviews across 80,000 firms in 60+ categories and
-          130 countries — backed by transparent, unbiased research.
+          Twilight Technologies is a software company delivering custom
+          development, web and mobile apps, UI/UX design, and IT services —
+          trusted by clients worldwide since 2015.
         </p>
 
         <form
@@ -708,7 +432,7 @@ function Hero() {
             </svg>
             <input
               type="text"
-              placeholder="Search for services, software or firms..."
+              placeholder="Tell us about your project or the service you need..."
               className="w-full bg-transparent py-3 text-sm text-navy placeholder:text-slate/60 focus:outline-none"
             />
           </div>
@@ -717,7 +441,7 @@ function Hero() {
             className="inline-flex items-center justify-center gap-2 rounded-full px-7 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
             style={{ backgroundColor: BLUE }}
           >
-            Find Firms
+            Get a Quote
             <ArrowRight />
           </button>
         </form>
@@ -757,11 +481,11 @@ function Categories() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="text-3xl font-extrabold text-navy sm:text-4xl">
-            Choose the right development partner for your project
+            Software development services we provide
           </h2>
           <p className="mt-4 text-lg text-slate">
-            Find verified firms specializing in software, web development,
-            UI/UX, mobile apps, and other key services.
+            From custom software and mobile apps to UI/UX design and managed IT
+            — we build scalable solutions tailored to your business.
           </p>
         </div>
 
@@ -769,7 +493,7 @@ function Categories() {
           {categories.map((cat) => (
             <a
               key={cat.title}
-              href="#directory"
+              href="/about-us#contact"
               className="group flex flex-col rounded-2xl border border-border bg-white p-6 transition-all hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg"
             >
               <div
@@ -799,181 +523,14 @@ function Categories() {
 
         <div className="mt-10 flex flex-col items-center justify-center gap-4 text-center sm:flex-row">
           <p className="text-sm text-slate">
-            Not sure which service you need? Get a free match in 24 hours.
+            Not sure which service fits your needs? Schedule a free
+            consultation.
           </p>
           <a
-            href="#cta"
+            href="/about-us#contact"
             className="inline-flex items-center gap-1.5 rounded-md border-2 border-navy px-5 py-2.5 text-sm font-semibold text-navy transition-colors hover:bg-navy hover:text-white"
           >
-            Browse all 60+ services
-          </a>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ─── Vibe Coding promo ─── */
-function VibePromo() {
-  const metrics = [
-    { value: "200+", label: "Vetted vibe coding agencies" },
-    { value: "4.8", label: "Avg rating" },
-    { value: "2-6 Wk", label: "Typical MVP timeline" },
-  ];
-
-  return (
-    <section className="bg-white pb-20">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-3xl bg-navy px-6 py-12 sm:px-12 lg:py-16">
-          <div className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-blue-400/15 blur-3xl" />
-          <div className="pointer-events-none absolute -bottom-20 -left-10 h-64 w-64 rounded-full bg-blue-400/15 blur-3xl" />
-
-          <div className="relative grid items-center gap-10 lg:grid-cols-2">
-            <div>
-              <span
-                className="inline-block rounded-full px-3 py-1 text-xs font-bold uppercase tracking-widest text-navy"
-                style={{ backgroundColor: BLUE }}
-              >
-                New on Twilight
-              </span>
-              <h2 className="mt-5 text-3xl font-extrabold leading-tight text-white sm:text-4xl">
-                The Vibe Coding era has arrived.
-              </h2>
-              <p className="mt-4 max-w-xl text-base leading-relaxed text-slate-300">
-                From idea to live MVP in days, not months. Work with the most
-                renowned vibe coding agencies who turn natural language prompts
-                into production software at the speed of thought.
-              </p>
-              <a
-                href="#directory"
-                className="mt-7 inline-flex items-center gap-2 rounded-md px-6 py-3 text-sm font-semibold text-navy transition-opacity hover:opacity-90"
-                style={{ backgroundColor: BLUE }}
-              >
-                Browse Vibe Coding Firms
-                <ArrowRight />
-              </a>
-            </div>
-
-            <div className="grid grid-cols-3 gap-4">
-              {metrics.map((m) => (
-                <div
-                  key={m.label}
-                  className="rounded-2xl border border-white/10 bg-white/5 p-5 text-center backdrop-blur"
-                >
-                  <p className="text-2xl font-extrabold text-white sm:text-3xl">
-                    {m.value}
-                  </p>
-                  <p className="mt-2 text-xs leading-snug text-slate-400">
-                    {m.label}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ─── Directory with tabs ─── */
-function Directory() {
-  const [tab, setTab] = useState(directoryTabs[0]);
-  const firms = firmsByTab[tab];
-
-  return (
-    <section id="directory" className="bg-slate-light py-20">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-3xl font-extrabold text-navy sm:text-4xl">
-            Find the top-rated companies in every service category
-          </h2>
-          <p className="mt-4 text-lg text-slate">
-            Connect with top-ranked companies backed by trusted research and
-            verified reviews.
-          </p>
-        </div>
-
-        <div className="mt-10 flex flex-wrap justify-center gap-2">
-          {directoryTabs.map((t) => (
-            <button
-              key={t}
-              type="button"
-              onClick={() => setTab(t)}
-              className={`rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
-                t === tab
-                  ? "text-white"
-                  : "border border-border bg-white text-slate hover:text-navy"
-              }`}
-              style={t === tab ? { backgroundColor: BLUE } : undefined}
-            >
-              {t}
-            </button>
-          ))}
-        </div>
-
-        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {firms.map((firm, i) => (
-            <div
-              key={firm.name}
-              className="flex flex-col rounded-2xl border border-border bg-white p-5 transition-shadow hover:shadow-md"
-            >
-              <div className="flex items-center gap-3">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-slate-light text-base font-extrabold text-navy">
-                  {firm.name.charAt(0)}
-                </div>
-                <div className="min-w-0">
-                  <div className="flex items-center gap-1.5">
-                    <span
-                      className="flex h-4 w-4 items-center justify-center rounded-full text-[9px] font-bold text-white"
-                      style={{ backgroundColor: BLUE }}
-                    >
-                      #{i + 1}
-                    </span>
-                    <h3 className="truncate font-bold text-navy">
-                      {firm.name}
-                    </h3>
-                  </div>
-                  <p className="mt-0.5 truncate text-xs text-slate">
-                    {firm.location}
-                  </p>
-                </div>
-              </div>
-
-              <div className="mt-4 flex items-center gap-2">
-                <Stars value={Math.round(firm.rating)} />
-                <span className="text-sm font-bold text-navy">
-                  {firm.rating.toFixed(1)}
-                </span>
-                <span className="text-xs text-slate">
-                  ({firm.reviews} reviews)
-                </span>
-              </div>
-
-              <div className="mt-4 flex items-center justify-between border-t border-border pt-4">
-                <span className="text-sm font-semibold text-navy">
-                  {firm.rate}
-                </span>
-                <a
-                  href="#"
-                  className="inline-flex items-center gap-1 text-sm font-semibold transition-transform hover:translate-x-0.5"
-                  style={{ color: BLUE }}
-                >
-                  View profile
-                  <ArrowRight className="h-3.5 w-3.5" />
-                </a>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-10 text-center">
-          <a
-            href="#"
-            className="inline-flex items-center gap-2 rounded-md border-2 border-navy px-6 py-3 text-sm font-semibold text-navy transition-colors hover:bg-navy hover:text-white"
-          >
-            View all {tab.toLowerCase()} firms
-            <ArrowRight />
+            Talk to our team
           </a>
         </div>
       </div>
@@ -988,10 +545,11 @@ function Reviews() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="text-3xl font-extrabold text-navy sm:text-4xl">
-            New reviews from verified customers
+            What our clients say
           </h2>
           <p className="mt-4 text-lg text-slate">
-            Real feedback from real clients — every review is humanly vetted.
+            Real feedback from businesses we&apos;ve partnered with on software
+            projects.
           </p>
         </div>
 
@@ -1033,18 +591,18 @@ function Software() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="text-3xl font-extrabold text-navy sm:text-4xl">
-            Most popular software solutions
+            Technologies we work with
           </h2>
           <p className="mt-4 text-lg text-slate">
-            Browse 30,000+ verified software backed by real user reviews — find
-            the perfect fit without the guesswork.
+            We build and integrate solutions using industry-leading platforms
+            and tools to fit your business needs.
           </p>
         </div>
 
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {software.map((s) => (
+          {technologies.map((tech) => (
             <div
-              key={s.name}
+              key={tech.name}
               className="flex flex-col rounded-2xl border border-border bg-white p-6 transition-shadow hover:shadow-md"
             >
               <div className="flex items-start gap-4">
@@ -1052,31 +610,21 @@ function Software() {
                   className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-lg font-extrabold text-white"
                   style={{ backgroundColor: BLUE }}
                 >
-                  {s.name.charAt(0)}
+                  {tech.name.charAt(0)}
                 </div>
                 <div>
-                  <h3 className="font-bold leading-snug text-navy">{s.name}</h3>
-                  <p className="mt-1 text-xs text-slate">{s.category}</p>
+                  <h3 className="font-bold leading-snug text-navy">
+                    {tech.name}
+                  </h3>
+                  <p className="mt-1 text-xs font-semibold uppercase tracking-wide text-slate">
+                    {tech.category}
+                  </p>
                 </div>
               </div>
 
-              <div className="mt-4 flex items-center gap-2">
-                <Stars value={Math.round(s.rating)} />
-                <span className="text-sm font-bold text-navy">
-                  {s.rating.toFixed(1)}
-                </span>
-              </div>
-
-              <div className="mt-5 grid grid-cols-2 gap-3 border-t border-border pt-4 text-sm">
-                <div>
-                  <p className="text-xs text-slate">Free Trial</p>
-                  <p className="font-semibold text-navy">{s.trial}</p>
-                </div>
-                <div>
-                  <p className="text-xs text-slate">Entry Price</p>
-                  <p className="font-semibold text-navy">Contact vendor</p>
-                </div>
-              </div>
+              <p className="mt-4 flex-1 text-sm leading-relaxed text-slate">
+                {tech.description}
+              </p>
             </div>
           ))}
         </div>
@@ -1096,8 +644,7 @@ function Stories() {
           Stories of trust &amp; success
         </h2>
         <p className="mt-4 text-lg text-slate-300">
-          Hear from businesses who found their ideal partners on Twilight
-          Technologies.
+          Hear from clients who have partnered with Twilight Technologies.
         </p>
 
         <div className="relative mt-12">
@@ -1142,14 +689,21 @@ function WhyTrust() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <div>
-            <TwilightMark className="h-14 w-14" />
+            <Image
+              src="/logoTrans.png"
+              alt="Twilight Technologies"
+              width={1536}
+              height={1024}
+              className="h-14 w-14 object-contain"
+              style={{ transform: "scale(2.0)" }}
+            />
             <h2 className="mt-5 text-3xl font-extrabold text-navy sm:text-4xl">
               Why trust Twilight Technologies
             </h2>
             <p className="mt-4 text-lg leading-relaxed text-slate">
-              Twilight Technologies is a leading reviews and ratings platform,
-              featuring 100,000+ tech companies with humanly vetted client
-              reviews, detailed portfolios, and hourly rates.
+              Twilight Technologies is a leading software company providing
+              custom development, design, and IT services — helping businesses
+              of all sizes build scalable, innovative solutions since 2015.
             </p>
           </div>
 
@@ -1187,108 +741,6 @@ function WhyTrust() {
   );
 }
 
-/* ─── Insights ─── */
-function Insights() {
-  return (
-    <section id="insights" className="bg-slate-light py-20">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-3xl font-extrabold text-navy sm:text-4xl">
-            Latest insights &amp; expert perspectives
-          </h2>
-          <p className="mt-4 text-lg text-slate">
-            Explore data-backed surveys with inputs from top industry experts.
-          </p>
-        </div>
-
-        <div className="mt-12 grid gap-6 lg:grid-cols-3">
-          {insights.map((post) => (
-            <article
-              key={post.title}
-              className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-white transition-shadow hover:shadow-lg"
-            >
-              <div className="relative flex h-40 items-center justify-center bg-linear-to-br from-[#eef2fc] to-blue-100">
-                <TwilightMark className="h-12 w-12 opacity-50" />
-                <span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-navy">
-                  {post.tag}
-                </span>
-              </div>
-              <div className="flex flex-1 flex-col p-6">
-                <h3 className="text-lg font-bold leading-snug text-navy group-hover:text-navy/80">
-                  {post.title}
-                </h3>
-                <p className="mt-3 flex-1 text-sm leading-relaxed text-slate">
-                  {post.excerpt}
-                </p>
-                <a
-                  href="#"
-                  className="mt-5 inline-flex items-center gap-1 text-sm font-semibold transition-transform group-hover:translate-x-0.5"
-                  style={{ color: BLUE }}
-                >
-                  Read research article
-                  <ArrowRight className="h-3.5 w-3.5" />
-                </a>
-              </div>
-            </article>
-          ))}
-        </div>
-
-        <div className="mt-10 text-center">
-          <a
-            href="#"
-            className="inline-flex items-center gap-2 rounded-md border-2 border-navy px-6 py-3 text-sm font-semibold text-navy transition-colors hover:bg-navy hover:text-white"
-          >
-            Read all research articles
-          </a>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ─── CTA ─── */
-function CTA() {
-  return (
-    <section id="cta" className="bg-white py-20">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div
-          className="relative overflow-hidden rounded-3xl px-6 py-14 text-center sm:px-12"
-          style={{ backgroundColor: BLUE }}
-        >
-          <div className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-white/15 blur-2xl" />
-          <div className="pointer-events-none absolute -bottom-20 -left-10 h-64 w-64 rounded-full bg-white/10 blur-2xl" />
-
-          <div className="relative">
-            <h2 className="mx-auto max-w-2xl text-3xl font-extrabold leading-tight text-white sm:text-4xl">
-              Connect with your next customer on Twilight Technologies
-            </h2>
-            <p className="mx-auto mt-4 max-w-xl text-base text-white/85">
-              Join the marketplace where millions search, compare, and choose
-              their next partner.
-            </p>
-            <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <a
-                href="#"
-                className="inline-flex items-center gap-2 rounded-md bg-white px-7 py-3.5 text-sm font-semibold transition-colors hover:bg-white/90"
-                style={{ color: BLUE }}
-              >
-                Get Listed Now
-                <ArrowRight />
-              </a>
-              <a
-                href="#reviews"
-                className="inline-flex items-center gap-2 rounded-md border-2 border-white/80 px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-white/10"
-              >
-                Write a Review
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 /* ─── Footer ─── */
 const footerCols = [
   {
@@ -1302,14 +754,8 @@ const footerCols = [
     ],
   },
   {
-    title: "Software",
-    links: [
-      "CRM Software",
-      "Project Management",
-      "Help Desk",
-      "Accounting",
-      "All Software",
-    ],
+    title: "Technologies",
+    links: technologies.map((tech) => tech.name),
   },
   {
     title: "Working Hours",
@@ -1319,10 +765,10 @@ const footerCols = [
     title: "Company",
     links: [
       { label: "About Us", href: "/about-us" },
-      { label: "Get Listed", href: "/#cta" },
-      { label: "Write a Review", href: "/#reviews" },
-      { label: "Contact", href: "/about-us#contact" },
-      { label: "Careers", href: "#" },
+      { label: "Contact Us", href: "/about-us#contact" },
+      // { label: "Privacy Policy", href: "/privacy-policy" },
+      // { label: "Terms & Conditions", href: "/terms-and-conditions" },
+      // { label: "Careers", href: "#" },
     ],
   },
 ];
@@ -1333,10 +779,10 @@ function Footer() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-10 lg:grid-cols-6">
           <div className="lg:col-span-2">
-            <Logo className="h-10 w-auto" />
+            <Logo className="h-10 w-auto max-md:relative max-md:left-10" />
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-slate-400">
-              A leading B2B reviews and ratings platform, helping millions find
-              their perfect tech partner.
+              A leading software company delivering custom development, design,
+              and IT services for businesses worldwide.
             </p>
             <div className="mt-5 flex gap-3">
               {[
@@ -1419,18 +865,18 @@ function Footer() {
             rights reserved.
           </p>
           <div className="flex items-center gap-6">
-            <a
-              href="#"
+            <Link
+              href="/privacy-policy"
               className="text-sm text-slate-400 transition-colors hover:text-white"
             >
               Privacy Policy
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link
+              href="/terms-and-conditions"
               className="text-sm text-slate-400 transition-colors hover:text-white"
             >
-              Terms of Service
-            </a>
+              Terms &amp; Conditions
+            </Link>
           </div>
         </div>
       </div>
@@ -1446,14 +892,10 @@ export default function LandingPage() {
       <main>
         <Hero />
         <Categories />
-        <VibePromo />
-        <Directory />
         <Reviews />
         <Software />
         <Stories />
         <WhyTrust />
-        <Insights />
-        <CTA />
       </main>
       <Footer />
     </div>
