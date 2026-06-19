@@ -11,7 +11,7 @@ const INK = "#252424";
 const navLinks = [
   { label: "Services", href: "/#services" },
   { label: "Reviews", href: "/#reviews" },
-  { label: "Software", href: "/#software" },
+  { label: "Technologies", href: "/#software" },
   { label: "About Us", href: "/about-us" },
 ];
 

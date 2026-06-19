@@ -24,7 +24,7 @@ function Logo({ className = "h-9 w-auto" }: { className?: string }) {
 const navLinks = [
   { label: "Services", href: "/#services" },
   { label: "Reviews", href: "/#reviews" },
-  { label: "Software", href: "/#software" },
+  { label: "Technologies", href: "/#software" },
   { label: "About Us", href: "/about-us" },
 ];
 
