@@ -67,10 +67,7 @@ function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-white/95 backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-3.5 sm:px-6 lg:px-8">
-        <Link
-          href="/"
-          className="inline-flex shrink-0 items-center overflow-hidden max-md:h-10 max-md:w-36"
-        >
+        <Link href="/">
           <Logo />
         </Link>
 
@@ -100,10 +97,9 @@ function Header() {
 
         <button
           type="button"
-          className="relative z-10 shrink-0 rounded-lg p-2 text-navy lg:hidden"
+          className="rounded-lg p-2 text-navy lg:hidden"
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
-          aria-expanded={open}
         >
           <svg
             className="h-6 w-6"
