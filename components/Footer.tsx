@@ -3,14 +3,12 @@ import { Logo } from "./icons";
 
 export function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-[#0a0f1a] py-8">
+    <footer className="border-t border-border bg-white py-8">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
-          <div className="[&_span]:text-white/90">
-            <Logo />
-          </div>
+          <Logo />
 
-          <p className="text-sm text-slate-400">
+          <p className="text-sm text-slate">
             &copy; {new Date().getFullYear()} Twilight Technologies. All rights
             reserved.
           </p>
@@ -18,26 +16,26 @@ export function Footer() {
           <div className="flex items-center gap-6">
             <Link
               href="/about-us"
-              className="text-sm text-slate-400 transition-colors hover:text-white"
+              className="text-sm text-slate transition-colors hover:text-navy"
             >
               About Us
             </Link>
             <Link
               href="/privacy-policy"
-              className="text-sm text-slate-400 transition-colors hover:text-white"
+              className="text-sm text-slate transition-colors hover:text-navy"
             >
               Privacy Policy
             </Link>
             <Link
               href="/terms-and-conditions"
-              className="text-sm text-slate-400 transition-colors hover:text-white"
+              className="text-sm text-slate transition-colors hover:text-navy"
             >
               Terms &amp; Conditions
             </Link>
             <div className="flex gap-3">
               <a
                 href="#"
-                className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-slate-300 transition-colors hover:bg-primary hover:text-white"
+                className="flex h-8 w-8 items-center justify-center rounded-full bg-slate-100 text-slate transition-colors hover:bg-primary hover:text-white"
                 aria-label="LinkedIn"
               >
                 <svg
@@ -50,7 +48,7 @@ export function Footer() {
               </a>
               <a
                 href="#"
-                className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-slate-300 transition-colors hover:bg-primary hover:text-white"
+                className="flex h-8 w-8 items-center justify-center rounded-full bg-slate-100 text-slate transition-colors hover:bg-primary hover:text-white"
                 aria-label="Facebook"
               >
                 <svg
@@ -63,7 +61,7 @@ export function Footer() {
               </a>
               <a
                 href="#"
-                className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-slate-300 transition-colors hover:bg-primary hover:text-white"
+                className="flex h-8 w-8 items-center justify-center rounded-full bg-slate-100 text-slate transition-colors hover:bg-primary hover:text-white"
                 aria-label="YouTube"
               >
                 <svg

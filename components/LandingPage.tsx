@@ -11,7 +11,6 @@ import { useState } from "react";
    ============================================================ */
 
 const BLUE = "#0c3ea3";
-const INK = "#252424";
 
 /* ─── Shared bits ─── */
 /* Two "T"s merged within a circular form (the logo monogram). */
@@ -755,7 +754,12 @@ const footerCols = [
   },
   {
     title: "Working Hours",
-    lines: ["Monday – Friday", "11:00 AM – 8:00 PM"],
+    lines: [
+      "Monday – Friday",
+      "8:00 AM – 7:00 PM",
+      "Saturday",
+      "11:00 AM – 6:00 PM",
+    ],
   },
   {
     title: "Company",
@@ -771,12 +775,12 @@ const footerCols = [
 
 function Footer() {
   return (
-    <footer className="py-14" style={{ backgroundColor: INK }}>
+    <footer className="border-t border-border bg-white py-14">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-10 lg:grid-cols-6">
           <div className="lg:col-span-2">
             <Logo className="h-10 w-auto max-md:relative max-md:left-10" />
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-slate-400">
+            <p className="mt-4 max-w-xs text-sm leading-relaxed text-slate">
               A leading software company delivering custom development, design,
               and IT services for businesses worldwide.
             </p>
@@ -798,15 +802,7 @@ function Footer() {
                 <a
                   key={social.label}
                   href="#"
-                  className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-slate-300 transition-colors hover:text-white"
-                  style={{ transition: "background-color .2s" }}
-                  onMouseEnter={(e) =>
-                    (e.currentTarget.style.backgroundColor = BLUE)
-                  }
-                  onMouseLeave={(e) =>
-                    (e.currentTarget.style.backgroundColor =
-                      "rgba(255,255,255,0.1)")
-                  }
+                  className="flex h-9 w-9 items-center justify-center rounded-full bg-slate-100 text-slate transition-colors hover:bg-primary hover:text-white"
                   aria-label={social.label}
                 >
                   <svg
@@ -823,11 +819,11 @@ function Footer() {
 
           {footerCols.map((col) => (
             <div key={col.title}>
-              <h3 className="text-sm font-bold text-white">{col.title}</h3>
+              <h3 className="text-sm font-bold text-navy">{col.title}</h3>
               {"lines" in col && col.lines ? (
                 <div className="mt-4 space-y-2.5">
                   {col.lines.map((line) => (
-                    <p key={line} className="text-sm text-slate-400">
+                    <p key={line} className="text-sm text-slate">
                       {line}
                     </p>
                   ))}
@@ -842,7 +838,7 @@ function Footer() {
                       <li key={label}>
                         <Link
                           href={href}
-                          className="text-sm text-slate-400 transition-colors hover:text-white"
+                          className="text-sm text-slate transition-colors hover:text-navy"
                         >
                           {label}
                         </Link>
@@ -855,21 +851,21 @@ function Footer() {
           ))}
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 sm:flex-row">
-          <p className="text-sm text-slate-400">
+        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border pt-8 sm:flex-row">
+          <p className="text-sm text-slate">
             &copy; {new Date().getFullYear()} Twilight Technologies PVT LTD. All
             rights reserved.
           </p>
           <div className="flex items-center gap-6">
             <Link
               href="/privacy-policy"
-              className="text-sm text-slate-400 transition-colors hover:text-white"
+              className="text-sm text-slate transition-colors hover:text-navy"
             >
               Privacy Policy
             </Link>
             <Link
               href="/terms-and-conditions"
-              className="text-sm text-slate-400 transition-colors hover:text-white"
+              className="text-sm text-slate transition-colors hover:text-navy"
             >
               Terms &amp; Conditions
             </Link>

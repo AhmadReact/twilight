@@ -6,7 +6,6 @@ import { useState } from "react";
 import type { LegalDocument } from "@/lib/legal-content";
 
 const BLUE = "#0c3ea3";
-const INK = "#252424";
 
 const navLinks = [
   { label: "Services", href: "/#services" },
@@ -119,32 +118,32 @@ function Header() {
 
 function Footer() {
   return (
-    <footer className="py-14" style={{ backgroundColor: INK }}>
+    <footer className="border-t border-border bg-white py-14">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
           <Link href="/">
             <Logo className="h-10 w-auto" />
           </Link>
-          <p className="text-sm text-slate-400">
+          <p className="text-sm text-slate">
             &copy; {new Date().getFullYear()} Twilight Technologies PVT LTD. All
             rights reserved.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-6">
             <Link
               href="/about-us"
-              className="text-sm text-slate-400 transition-colors hover:text-white"
+              className="text-sm text-slate transition-colors hover:text-navy"
             >
               About Us
             </Link>
             <Link
               href="/privacy-policy"
-              className="text-sm text-slate-400 transition-colors hover:text-white"
+              className="text-sm text-slate transition-colors hover:text-navy"
             >
               Privacy Policy
             </Link>
             <Link
               href="/terms-and-conditions"
-              className="text-sm text-slate-400 transition-colors hover:text-white"
+              className="text-sm text-slate transition-colors hover:text-navy"
             >
               Terms &amp; Conditions
             </Link>

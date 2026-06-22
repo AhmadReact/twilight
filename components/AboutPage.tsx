@@ -5,7 +5,6 @@ import Link from "next/link";
 import { useState } from "react";
 
 const BLUE = "#0c3ea3";
-const INK = "#252424";
 
 function Logo({ className = "h-9 w-auto" }: { className?: string }) {
   return (
@@ -49,7 +48,7 @@ const highlights = [
 const offices = [
   {
     label: "United States",
-    address: "13243 S Springdale Way, Draper, UT 84020",
+    address: ["Anne Arundel County", "Maryland"],
     phone: "+1 (302) 725 4147",
     email: "info@twilight.net",
   },
@@ -149,32 +148,32 @@ function Header() {
 
 function Footer() {
   return (
-    <footer className="py-14" style={{ backgroundColor: INK }}>
+    <footer className="border-t border-border bg-white py-14">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
           <Link href="/">
             <Logo className="h-10 w-auto" />
           </Link>
-          <p className="text-sm text-slate-400">
+          <p className="text-sm text-slate">
             &copy; {new Date().getFullYear()} Twilight Technologies PVT LTD. All
             rights reserved.
           </p>
           <div className="flex items-center gap-6">
             <Link
               href="/about-us"
-              className="text-sm text-slate-400 transition-colors hover:text-white"
+              className="text-sm text-slate transition-colors hover:text-navy"
             >
               About Us
             </Link>
             <Link
               href="/privacy-policy"
-              className="text-sm text-slate-400 transition-colors hover:text-white"
+              className="text-sm text-slate transition-colors hover:text-navy"
             >
               Privacy Policy
             </Link>
             <Link
               href="/terms-and-conditions"
-              className="text-sm text-slate-400 transition-colors hover:text-white"
+              className="text-sm text-slate transition-colors hover:text-navy"
             >
               Terms &amp; Conditions
             </Link>
@@ -292,7 +291,9 @@ export default function AboutPage() {
                     {office.label}
                   </h3>
                   <ul className="mt-5 space-y-3 text-sm text-slate">
-                    <li>{office.address}</li>
+                    {office.address.map((line) => (
+                      <li key={line}>{line}</li>
+                    ))}
                     <li>
                       <a
                         href={`tel:${office.phone.replace(/\s/g, "")}`}
@@ -322,7 +323,9 @@ export default function AboutPage() {
               <p className="mt-3 text-lg font-semibold text-navy">
                 Monday – Friday
               </p>
-              <p className="mt-1 text-slate">11:00 AM – 8:00 PM</p>
+              <p className="mt-1 text-slate">8:00 AM – 7:00 PM</p>
+              <p className="mt-4 text-lg font-semibold text-navy">Saturday</p>
+              <p className="mt-1 text-slate">11:00 AM – 6:00 PM</p>
             </div>
           </div>
         </section>
