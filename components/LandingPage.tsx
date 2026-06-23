@@ -2,7 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { AnimateOnScroll } from "./AnimateOnScroll";
+import { CountUp } from "./CountUp";
 
 /* ============================================================
    Twilight Technologies brand
@@ -265,6 +267,7 @@ function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-white/95 backdrop-blur">
+      <AnimateOnScroll animation="fade-in" immediate duration={500}>
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-3.5 sm:px-6 lg:px-8">
         <a href="#top">
           <Logo className="h-10 w-auto max-md:relative max-md:left-10" />
@@ -327,6 +330,7 @@ function Header() {
           </svg>
         </button>
       </div>
+      </AnimateOnScroll>
 
       {open && (
         <nav className="border-t border-border bg-white px-4 py-4 lg:hidden">
@@ -363,38 +367,57 @@ function Hero() {
       id="top"
       className="relative overflow-hidden bg-linear-to-b from-[#eef2fc] to-white"
     >
-      <div className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full bg-blue-200/40 blur-3xl" />
-      <div className="pointer-events-none absolute -left-24 top-32 h-72 w-72 rounded-full bg-blue-100/50 blur-3xl" />
+      <div
+        className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 animate-float rounded-full bg-blue-200/40 blur-3xl"
+        style={{ animationDelay: "0s" }}
+      />
+      <div
+        className="pointer-events-none absolute -left-24 top-32 h-72 w-72 animate-float rounded-full bg-blue-100/50 blur-3xl"
+        style={{ animationDelay: "2s" }}
+      />
 
       <div className="relative mx-auto max-w-5xl px-4 py-20 text-center sm:px-6 lg:px-8 lg:py-28">
-        <span
-          className="inline-flex items-center gap-1.5 rounded-full border border-blue-200 bg-white px-3 py-1 text-xs font-semibold"
-          style={{ color: BLUE }}
-        >
-          <TwilightMark className="h-4 w-4" />
-          Custom Software Development &amp; IT Services
-        </span>
+        <AnimateOnScroll animation="fade-up" delay={0} immediate>
+          <span
+            className="inline-flex items-center gap-1.5 rounded-full border border-blue-200 bg-white px-3 py-1 text-xs font-semibold"
+            style={{ color: BLUE }}
+          >
+            <TwilightMark className="h-4 w-4" />
+            Custom Software Development &amp; IT Services
+          </span>
+        </AnimateOnScroll>
 
-        <h1 className="mx-auto mt-6 max-w-3xl text-4xl font-extrabold leading-tight tracking-tight text-navy sm:text-5xl lg:text-6xl">
-          Custom software solutions
-          <br />
-          for your <span style={{ color: BLUE }}>next project</span>
-        </h1>
+        <AnimateOnScroll animation="fade-up" delay={120} immediate>
+          <h1 className="mx-auto mt-6 max-w-3xl text-4xl font-extrabold leading-tight tracking-tight text-navy sm:text-5xl lg:text-6xl">
+            Custom software solutions
+            <br />
+            for your <span style={{ color: BLUE }}>next project</span>
+          </h1>
+        </AnimateOnScroll>
 
-        <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-slate">
-          Twilight Technologies is a software company delivering custom
-          development, web and mobile apps, UI/UX design, and IT services —
-          trusted by clients worldwide since 2015.
-        </p>
+        <AnimateOnScroll animation="fade-up" delay={240} immediate>
+          <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-slate">
+            Twilight Technologies is a software company delivering custom
+            development, web and mobile apps, UI/UX design, and IT services —
+            trusted by clients worldwide since 2015.
+          </p>
+        </AnimateOnScroll>
 
         <div className="mx-auto mt-14 grid max-w-3xl grid-cols-2 gap-6 sm:grid-cols-4">
-          {heroStats.map((stat) => (
-            <div key={stat.label}>
-              <p className="text-3xl font-extrabold text-navy sm:text-4xl">
-                {stat.value}
-              </p>
-              <p className="mt-1 text-sm text-slate">{stat.label}</p>
-            </div>
+          {heroStats.map((stat, index) => (
+            <AnimateOnScroll
+              key={stat.label}
+              animation="scale-up"
+              delay={400 + index * 100}
+              immediate
+            >
+              <div>
+                <p className="text-3xl font-extrabold text-navy sm:text-4xl">
+                  <CountUp value={stat.value} />
+                </p>
+                <p className="mt-1 text-sm text-slate">{stat.label}</p>
+              </div>
+            </AnimateOnScroll>
           ))}
         </div>
       </div>
@@ -407,25 +430,31 @@ function Categories() {
   return (
     <section id="services" className="bg-white py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-3xl font-extrabold text-navy sm:text-4xl">
-            Software development services we provide
-          </h2>
-          <p className="mt-4 text-lg text-slate">
-            From custom software and mobile apps to UI/UX design and managed IT
-            — we build scalable solutions tailored to your business.
-          </p>
-        </div>
+        <AnimateOnScroll animation="fade-up">
+          <div className="mx-auto max-w-3xl text-center">
+            <h2 className="text-3xl font-extrabold text-navy sm:text-4xl">
+              Software development services we provide
+            </h2>
+            <p className="mt-4 text-lg text-slate">
+              From custom software and mobile apps to UI/UX design and managed IT
+              — we build scalable solutions tailored to your business.
+            </p>
+          </div>
+        </AnimateOnScroll>
 
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {categories.map((cat) => (
-            <a
+          {categories.map((cat, index) => (
+            <AnimateOnScroll
               key={cat.title}
+              animation="fade-up"
+              delay={index * 80}
+            >
+            <a
               href="/about-us#contact"
-              className="group flex flex-col rounded-2xl border border-border bg-white p-6 transition-all hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg"
+              className="group flex h-full flex-col rounded-2xl border border-border bg-white p-6 transition-all duration-300 hover:-translate-y-1.5 hover:border-blue-200 hover:shadow-lg"
             >
               <div
-                className={`mb-5 inline-flex h-14 w-14 items-center justify-center rounded-xl ${cat.tint}`}
+                className={`mb-5 inline-flex h-14 w-14 items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-110 ${cat.tint}`}
               >
                 <CategoryIcon type={cat.icon} />
               </div>
@@ -446,21 +475,24 @@ function Categories() {
                 </span>
               </div>
             </a>
+            </AnimateOnScroll>
           ))}
         </div>
 
-        <div className="mt-10 flex flex-col items-center justify-center gap-4 text-center sm:flex-row">
-          <p className="text-sm text-slate">
-            Not sure which service fits your needs? Schedule a free
-            consultation.
-          </p>
-          <a
-            href="/about-us#contact"
-            className="inline-flex items-center gap-1.5 rounded-md border-2 border-navy px-5 py-2.5 text-sm font-semibold text-navy transition-colors hover:bg-navy hover:text-white"
-          >
-            Talk to our team
-          </a>
-        </div>
+        <AnimateOnScroll animation="fade-up" delay={200}>
+          <div className="mt-10 flex flex-col items-center justify-center gap-4 text-center sm:flex-row">
+            <p className="text-sm text-slate">
+              Not sure which service fits your needs? Schedule a free
+              consultation.
+            </p>
+            <a
+              href="/about-us#contact"
+              className="inline-flex items-center gap-1.5 rounded-md border-2 border-navy px-5 py-2.5 text-sm font-semibold text-navy transition-colors hover:bg-navy hover:text-white"
+            >
+              Talk to our team
+            </a>
+          </div>
+        </AnimateOnScroll>
       </div>
     </section>
   );
@@ -471,21 +503,27 @@ function Reviews() {
   return (
     <section id="reviews" className="bg-white py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-3xl font-extrabold text-navy sm:text-4xl">
-            What our clients say
-          </h2>
-          <p className="mt-4 text-lg text-slate">
-            Real feedback from businesses we&apos;ve partnered with on software
-            projects.
-          </p>
-        </div>
+        <AnimateOnScroll animation="fade-up">
+          <div className="mx-auto max-w-3xl text-center">
+            <h2 className="text-3xl font-extrabold text-navy sm:text-4xl">
+              What our clients say
+            </h2>
+            <p className="mt-4 text-lg text-slate">
+              Real feedback from businesses we&apos;ve partnered with on software
+              projects.
+            </p>
+          </div>
+        </AnimateOnScroll>
 
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {reviews.map((r) => (
-            <div
+          {reviews.map((r, index) => (
+            <AnimateOnScroll
               key={r.company}
-              className="flex flex-col rounded-2xl border border-border bg-white p-6 shadow-sm transition-shadow hover:shadow-md"
+              animation="fade-up"
+              delay={index * 70}
+            >
+            <div
+              className="flex h-full flex-col rounded-2xl border border-border bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
             >
               <div className="flex items-center justify-between">
                 <h3 className="font-bold text-navy">{r.company}</h3>
@@ -505,6 +543,7 @@ function Reviews() {
                 <p className="text-xs text-slate">{r.role}</p>
               </div>
             </div>
+            </AnimateOnScroll>
           ))}
         </div>
       </div>
@@ -517,21 +556,27 @@ function Software() {
   return (
     <section id="software" className="bg-slate-light py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-3xl font-extrabold text-navy sm:text-4xl">
-            Technologies we work with
-          </h2>
-          <p className="mt-4 text-lg text-slate">
-            We build and integrate solutions using industry-leading platforms
-            and tools to fit your business needs.
-          </p>
-        </div>
+        <AnimateOnScroll animation="fade-up">
+          <div className="mx-auto max-w-3xl text-center">
+            <h2 className="text-3xl font-extrabold text-navy sm:text-4xl">
+              Technologies we work with
+            </h2>
+            <p className="mt-4 text-lg text-slate">
+              We build and integrate solutions using industry-leading platforms
+              and tools to fit your business needs.
+            </p>
+          </div>
+        </AnimateOnScroll>
 
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {technologies.map((tech) => (
-            <div
+          {technologies.map((tech, index) => (
+            <AnimateOnScroll
               key={tech.name}
-              className="flex flex-col rounded-2xl border border-border bg-white p-6 transition-shadow hover:shadow-md"
+              animation="scale-up"
+              delay={index * 80}
+            >
+            <div
+              className="flex h-full flex-col rounded-2xl border border-border bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
             >
               <div className="flex items-start gap-4">
                 <div
@@ -554,6 +599,7 @@ function Software() {
                 {tech.description}
               </p>
             </div>
+            </AnimateOnScroll>
           ))}
         </div>
       </div>
@@ -561,50 +607,86 @@ function Software() {
   );
 }
 
+const STORY_AUTO_PLAY_MS = 6000;
+
 /* ─── Stories ─── */
 function Stories() {
   const [active, setActive] = useState(0);
+  const [visible, setVisible] = useState(true);
+
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      setVisible(false);
+      window.setTimeout(() => {
+        setActive((prev) => (prev + 1) % stories.length);
+        setVisible(true);
+      }, 350);
+    }, STORY_AUTO_PLAY_MS);
+
+    return () => window.clearInterval(interval);
+  }, []);
+
+  const goToStory = (index: number) => {
+    if (index === active) return;
+    setVisible(false);
+    window.setTimeout(() => {
+      setActive(index);
+      setVisible(true);
+    }, 350);
+  };
 
   return (
     <section className="bg-navy py-20">
       <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-extrabold text-white sm:text-4xl">
-          Stories of trust &amp; success
-        </h2>
-        <p className="mt-4 text-lg text-slate-300">
-          Hear from clients who have partnered with Twilight Technologies.
-        </p>
+        <AnimateOnScroll animation="fade-up">
+          <h2 className="text-3xl font-extrabold text-white sm:text-4xl">
+            Stories of trust &amp; success
+          </h2>
+          <p className="mt-4 text-lg text-slate-300">
+            Hear from clients who have partnered with Twilight Technologies.
+          </p>
+        </AnimateOnScroll>
 
-        <div className="relative mt-12">
-          <span className="mx-auto block" style={{ color: BLUE }}>
-            <svg
-              className="mx-auto h-10 w-10 opacity-40"
-              fill="currentColor"
-              viewBox="0 0 24 24"
+        <AnimateOnScroll animation="fade-up" delay={150}>
+          <div className="relative mt-12">
+            <span className="mx-auto block" style={{ color: BLUE }}>
+              <svg
+                className="mx-auto h-10 w-10 opacity-40"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+              </svg>
+            </span>
+            <div
+              className="transition-all duration-300 ease-out"
+              style={{
+                opacity: visible ? 1 : 0,
+                transform: visible ? "translateY(0)" : "translateY(12px)",
+              }}
             >
-              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-            </svg>
-          </span>
-          <p className="mt-6 text-xl font-medium leading-relaxed text-white sm:text-2xl">
-            {stories[active].quote}
-          </p>
-          <p className="mt-6 text-sm font-semibold" style={{ color: BLUE }}>
-            {stories[active].author}
-          </p>
+              <p className="mt-6 text-xl font-medium leading-relaxed text-white sm:text-2xl">
+                {stories[active].quote}
+              </p>
+              <p className="mt-6 text-sm font-semibold" style={{ color: BLUE }}>
+                {stories[active].author}
+              </p>
+            </div>
 
-          <div className="mt-8 flex items-center justify-center gap-2">
-            {stories.map((_, i) => (
-              <button
-                key={i}
-                type="button"
-                onClick={() => setActive(i)}
-                className={`h-2 rounded-full transition-all ${i === active ? "w-7" : "w-2 bg-white/30"}`}
-                style={i === active ? { backgroundColor: BLUE } : undefined}
-                aria-label={`Story ${i + 1}`}
-              />
-            ))}
+            <div className="mt-8 flex items-center justify-center gap-2">
+              {stories.map((_, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  onClick={() => goToStory(i)}
+                  className={`h-2 rounded-full transition-all duration-300 ${i === active ? "w-7" : "w-2 bg-white/30"}`}
+                  style={i === active ? { backgroundColor: BLUE } : undefined}
+                  aria-label={`Story ${i + 1}`}
+                />
+              ))}
+            </div>
           </div>
-        </div>
+        </AnimateOnScroll>
       </div>
     </section>
   );
@@ -616,6 +698,7 @@ function WhyTrust() {
     <section className="bg-white py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid items-center gap-12 lg:grid-cols-2">
+          <AnimateOnScroll animation="fade-left">
           <div>
             <Image
               src="/logoTrans.png"
@@ -634,12 +717,17 @@ function WhyTrust() {
               of all sizes build scalable, innovative solutions since 2015.
             </p>
           </div>
+          </AnimateOnScroll>
 
           <ul className="space-y-4">
-            {trustPoints.map((point) => (
-              <li
+            {trustPoints.map((point, index) => (
+              <AnimateOnScroll
                 key={point}
-                className="flex items-start gap-3 rounded-xl border border-border bg-slate-light/60 p-5"
+                animation="fade-right"
+                delay={index * 100}
+              >
+              <li
+                className="flex items-start gap-3 rounded-xl border border-border bg-slate-light/60 p-5 transition-all duration-300 hover:border-blue-200 hover:shadow-sm"
               >
                 <span
                   className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-white"
@@ -661,6 +749,7 @@ function WhyTrust() {
                 </span>
                 <span className="text-sm font-medium text-navy">{point}</span>
               </li>
+              </AnimateOnScroll>
             ))}
           </ul>
         </div>
@@ -710,6 +799,7 @@ function Footer() {
   return (
     <footer className="border-t border-border bg-white py-14">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <AnimateOnScroll animation="fade-up">
         <div className="grid gap-10 lg:grid-cols-6">
           <div className="lg:col-span-2">
             <Logo className="h-10 w-auto max-md:relative max-md:left-10" />
@@ -783,6 +873,7 @@ function Footer() {
             </div>
           ))}
         </div>
+        </AnimateOnScroll>
 
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border pt-8 sm:flex-row">
           <p className="text-sm text-slate">
