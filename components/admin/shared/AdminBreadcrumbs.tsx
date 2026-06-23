@@ -47,19 +47,18 @@ export default function AdminBreadcrumbs({
 
   return (
     <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-2">
-      <IconButton
-        component={Link}
-        href={homeHref}
-        aria-label="Home"
-        size="small"
-        sx={{
-          p: '4px',
-          color: grayColors[500],
-          '&:hover': { bgcolor: '#F9FAFB' },
-        }}
-      >
-        <HomeOutlinedIcon sx={{ fontSize: 20 }} />
-      </IconButton>
+      <Link href={homeHref} aria-label="Home" className="inline-flex">
+        <IconButton
+          size="small"
+          sx={{
+            p: '4px',
+            color: grayColors[500],
+            '&:hover': { bgcolor: '#F9FAFB' },
+          }}
+        >
+          <HomeOutlinedIcon sx={{ fontSize: 20 }} />
+        </IconButton>
+      </Link>
       {trail.map((item, index) => (
         <span key={`${item.label}-${item.href ?? 'current'}`} className="flex items-center gap-2">
           <ChevronRightIcon sx={{ fontSize: 16, color: grayColors[500] }} />

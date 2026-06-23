@@ -6,18 +6,14 @@ import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
+import CircularProgress from '@mui/material/CircularProgress';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import TextField from '@mui/material/TextField';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
-import { mockAdminUser, validateMockCredentials } from '@/lib/auth/mockCredentials';
 import { useAppDispatch, useAppSelector } from '@/lib/store/hooks';
-import {
-  selectIsAuthenticated,
-  selectUserError,
-  setError,
-  setUser,
-} from '@/lib/store/slices/userSlice';
+import { selectIsAuthenticated, selectUserLoading } from '@/lib/store/slices/userSlice';
+import { loginAdmin } from '@/lib/store/thunks/mainThunk';
 import { brandColors, grayColors, loginFieldSx } from '@/lib/theme';
 import LoginBackgroundPattern from '@/components/login/LoginBackgroundPattern';
 
@@ -37,7 +33,7 @@ export default function LoginPage() {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const isAuthenticated = useAppSelector(selectIsAuthenticated);
-  const authError = useAppSelector(selectUserError);
+  const isLoading = useAppSelector(selectUserLoading);
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -58,11 +54,11 @@ export default function LoginPage() {
                 width={104}
                 height={75}
                 priority
-                className="relative z-1 w-[103.999px] h-[74.749px]"
+                className="login-scale-in relative z-1 w-[103.999px] h-[74.749px] transition-transform duration-300 hover:scale-105"
               />
             </div>
 
-            <div className="relative z-1 flex w-full flex-col items-start gap-3 text-center">
+            <div className="login-fade-up login-delay-200 relative z-1 flex w-full flex-col items-start gap-3 text-center">
               <h1 className="w-full text-[30px] font-semibold leading-[38px] text-[#101828]">
                 Super Admin Log in
               </h1>
@@ -75,23 +71,28 @@ export default function LoginPage() {
           <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
-            onSubmit={(values, { setSubmitting }) => {
-              dispatch(setError(null));
+            onSubmit={async (values, { setSubmitting }) => {
+              const result = await dispatch(
+                loginAdmin({
+                  email: values.email,
+                  password: values.password,
+                })
+              );
 
-              if (!validateMockCredentials(values.email, values.password)) {
-                dispatch(setError('Invalid email or password'));
-                setSubmitting(false);
-                return;
+              if (loginAdmin.fulfilled.match(result)) {
+                router.replace('/admin/dashboard');
               }
 
-              dispatch(setUser(mockAdminUser));
-              router.replace('/admin/dashboard');
+              setSubmitting(false);
             }}
           >
-            {({ values, errors, touched, handleChange, handleBlur, isSubmitting }) => (
+            {({ values, errors, touched, handleChange, handleBlur, isSubmitting }) => {
+              const signingIn = isSubmitting || isLoading;
+
+              return (
               <Form className="flex w-full flex-col gap-6">
                 <div className="flex flex-col gap-5">
-                  <div className="flex flex-col gap-1.5">
+                  <div className="login-fade-up login-delay-300 flex flex-col gap-1.5">
                     <label htmlFor="email" className="text-sm font-medium leading-5 text-[#344054]">
                       Email
                     </label>
@@ -112,7 +113,7 @@ export default function LoginPage() {
                     />
                   </div>
 
-                  <div className="flex flex-col gap-1.5">
+                  <div className="login-fade-up login-delay-400 flex flex-col gap-1.5">
                     <label
                       htmlFor="password"
                       className="text-sm font-medium leading-5 text-[#344054]"
@@ -196,17 +197,14 @@ export default function LoginPage() {
                   </Button>
                 </div>
 
-                {authError ? (
-                  <p className="w-full text-sm font-medium leading-5 text-[#D92D20]" role="alert">
-                    {authError}
-                  </p>
-                ) : null}
-
                 <Button
                   type="submit"
                   fullWidth
-                  disabled={isSubmitting}
+                  disabled={signingIn}
                   disableElevation
+                  startIcon={
+                    signingIn ? <CircularProgress size={18} color="inherit" /> : undefined
+                  }
                   sx={{
                     borderRadius: '1000px',
                     border: `1px solid ${brandColors[300]}`,
@@ -223,12 +221,19 @@ export default function LoginPage() {
                       backgroundImage:
                         'linear-gradient(184.75deg, rgb(183, 110, 255) 5.31%, rgb(117, 53, 181) 87.07%)',
                     },
+                    '&.Mui-disabled': {
+                      color: '#FFFFFF',
+                      backgroundImage:
+                        'linear-gradient(184.75deg, rgb(195, 134, 255) 5.31%, rgb(150, 67, 232) 87.07%)',
+                      opacity: 0.85,
+                    },
                   }}
                 >
-                  Sign in
+                  {signingIn ? 'Signing in...' : 'Sign in'}
                 </Button>
               </Form>
-            )}
+              );
+            }}
           </Formik>
         </div>
       </div>

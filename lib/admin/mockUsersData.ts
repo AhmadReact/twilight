@@ -1,10 +1,6 @@
 export type UserStatus = 'Active' | 'Blocked' | 'Inactive';
 
-export type UserType =
-  | 'Buyer'
-  | 'Seller (Pro)'
-  | 'Seller (Team Lead)'
-  | 'Seller (Worker)';
+export type UserType = 'Buyer' | 'Seller (Pro)' | 'Seller (Team Lead)' | 'Seller (Worker)';
 
 export type UserRow = {
   slug: string;
@@ -211,7 +207,7 @@ export function filterUserRows(
   rows: UserRow[],
   roleFilter: string,
   statusFilter: string,
-  searchQuery: string,
+  searchQuery: string
 ): UserRow[] {
   const typeMatch = userTypeFilterMap[roleFilter] ?? null;
   const statusMatch = statusFilterMap[statusFilter] ?? null;

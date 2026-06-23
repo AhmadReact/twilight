@@ -49,7 +49,12 @@ export default function BuyerUserDetailPage({ detail }: BuyerUserDetailPageProps
           />
         </div>
 
-        <UserDetailActionsBar userId={user.userId} memberSince={user.memberSince} />
+        <UserDetailActionsBar
+          userId={user.userId}
+          userName={user.name}
+          memberSince={user.memberSince}
+          isBlocked={user.status === 'Blocked'}
+        />
 
         <BookingsMetricCard
           total={detail.totalBookings}

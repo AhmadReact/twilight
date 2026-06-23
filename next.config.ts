@@ -1,7 +1,16 @@
 import type { NextConfig } from 'next';
 
+const apiBase = process.env.NEXT_PUBLIC_API ?? 'https://stage.whocan-app.com';
+
 const nextConfig: NextConfig = {
-  /* config options here */
+  async rewrites() {
+    return [
+      {
+        source: '/api/:path*',
+        destination: `${apiBase}/api/:path*`,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

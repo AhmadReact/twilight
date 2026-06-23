@@ -1,13 +1,24 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
+import { useGetUsersQuery } from '@/app/admin/users/store/userAPI';
 import AdminBreadcrumbs from '@/components/admin/shared/AdminBreadcrumbs';
 import FilterButtonGroup from '@/components/admin/shared/FilterButtonGroup';
 import UsersTable from '@/components/admin/users/UsersTable';
+import NewUserDialog from '@/components/admin/users/NewUserDialog';
 import { loginFieldSx } from '@/lib/theme';
+
+const PAGE_SIZE = 10;
+
+const roleFilterToApiKey: Record<string, string> = {
+  buyer: 'buyer',
+  'pro-seller': 'pro_seller',
+  'team-lead': 'team_lead',
+  'team-worker': 'team_worker',
+};
 
 const roleFilters = [
   { id: 'all', label: 'All', showDot: true },
@@ -27,6 +38,34 @@ export default function UsersPage() {
   const [roleFilter, setRoleFilter] = useState('all');
   const [statusFilter, setStatusFilter] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
+  const [debouncedSearch, setDebouncedSearch] = useState('');
+  const [page, setPage] = useState(1);
+  const [newUserOpen, setNewUserOpen] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setDebouncedSearch(searchQuery), 300);
+    return () => clearTimeout(timer);
+  }, [searchQuery]);
+
+  const queryParams = useMemo(
+    () => ({
+      ...(debouncedSearch.trim() && { search: debouncedSearch.trim() }),
+      ...(roleFilter !== 'all' && {
+        user_type: roleFilterToApiKey[roleFilter] ?? roleFilter,
+      }),
+      ...(statusFilter !== 'all' && { status: statusFilter }),
+      page,
+      limit: PAGE_SIZE,
+    }),
+    [debouncedSearch, roleFilter, statusFilter, page]
+  );
+
+  const { data, isLoading, isFetching } = useGetUsersQuery(queryParams);
+
+  const users = data?.data.users ?? [];
+  const pagination = data?.data.pagination;
+  const total = pagination?.total ?? users.length;
+  const totalPages = pagination?.total_pages ?? 1;
 
   return (
     <div className="flex flex-col gap-8 px-4 pb-12 pt-6 sm:px-6 lg:px-8 lg:pt-8">
@@ -49,7 +88,10 @@ export default function UsersPage() {
               size="small"
               fullWidth
               value={searchQuery}
-              onChange={(event) => setSearchQuery(event.target.value)}
+              onChange={(event) => {
+                setSearchQuery(event.target.value);
+                setPage(1);
+              }}
               sx={{
                 ...loginFieldSx,
                 maxWidth: 320,
@@ -76,24 +118,37 @@ export default function UsersPage() {
             <FilterButtonGroup
               items={roleFilters}
               activeId={roleFilter}
-              onChange={setRoleFilter}
+              onChange={(value) => {
+                setRoleFilter(value);
+                setPage(1);
+              }}
             />
           </div>
           <div className="overflow-x-auto pb-1 lg:shrink-0">
             <FilterButtonGroup
               items={statusFilters}
               activeId={statusFilter}
-              onChange={setStatusFilter}
+              onChange={(value) => {
+                setStatusFilter(value);
+                setPage(1);
+              }}
             />
           </div>
         </div>
       </header>
 
       <UsersTable
-        roleFilter={roleFilter}
-        statusFilter={statusFilter}
-        searchQuery={searchQuery}
+        users={users}
+        total={total}
+        page={pagination?.page ?? page}
+        totalPages={totalPages}
+        isLoading={isLoading}
+        isFetching={isFetching}
+        onPageChange={setPage}
+        onNewUserClick={() => setNewUserOpen(true)}
       />
+
+      <NewUserDialog open={newUserOpen} onClose={() => setNewUserOpen(false)} />
     </div>
   );
 }

@@ -7,7 +7,7 @@ import type {
 type UserBookingsSectionsProps = {
   bookingsInProgress: UserBookingCard[];
   upcomingBookings: UserBookingCard[];
-  provider: BookingServiceProvider;
+  provider?: BookingServiceProvider;
 };
 
 export default function UserBookingsSections({
@@ -20,26 +20,34 @@ export default function UserBookingsSections({
       <section className="space-y-4">
         <h2 className="text-lg font-semibold leading-7 text-[#101828]">Bookings In Progress</h2>
         <div className="flex flex-col gap-3">
-          {bookingsInProgress.map((booking, index) => (
-            <ServiceBookingCard
-              key={`in-progress-${index}`}
-              booking={booking}
-              provider={provider}
-            />
-          ))}
+          {bookingsInProgress.length === 0 ? (
+            <p className="text-sm text-[#475467]">No bookings in progress.</p>
+          ) : (
+            bookingsInProgress.map((booking) => (
+              <ServiceBookingCard
+                key={`in-progress-${booking.title}-${booking.date}-${booking.time}`}
+                booking={booking}
+                provider={booking.provider ?? provider}
+              />
+            ))
+          )}
         </div>
       </section>
 
       <section className="space-y-4">
         <h2 className="text-lg font-semibold leading-7 text-[#101828]">Upcoming Bookings</h2>
         <div className="flex flex-col gap-3">
-          {upcomingBookings.map((booking, index) => (
-            <ServiceBookingCard
-              key={`upcoming-${index}`}
-              booking={booking}
-              provider={provider}
-            />
-          ))}
+          {upcomingBookings.length === 0 ? (
+            <p className="text-sm text-[#475467]">No upcoming bookings.</p>
+          ) : (
+            upcomingBookings.map((booking) => (
+              <ServiceBookingCard
+                key={`upcoming-${booking.title}-${booking.date}-${booking.time}`}
+                booking={booking}
+                provider={booking.provider ?? provider}
+              />
+            ))
+          )}
         </div>
       </section>
     </div>

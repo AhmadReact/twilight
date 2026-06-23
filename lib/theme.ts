@@ -16,6 +16,45 @@ export const brandColors = {
   700: '#7535B5',
 };
 
+export const brandGradient = `linear-gradient(184.75deg, ${brandColors[300]} 5.31%, ${brandColors[600]} 87.07%)`;
+
+export const notificationGradient = `linear-gradient(184.75deg, #E8D4FF 5.31%, ${brandColors[300]} 40%, ${brandColors[600]} 87.07%)`;
+
+export const notificationAlertSx = {
+  width: '100%',
+  minWidth: 320,
+  borderRadius: '12px',
+  border: `1px solid ${brandColors[300]}`,
+  boxShadow: '0px 4px 12px rgba(16, 24, 40, 0.06)',
+  fontWeight: 500,
+  fontSize: '14px',
+  lineHeight: '20px',
+  color: '#FFFFFF',
+  backgroundColor: '#9643E8',
+  // backgroundImage: notificationGradient,
+  backgroundRepeat: 'no-repeat',
+  backgroundSize: 'cover',
+  '& .MuiAlert-icon': {
+    color: '#FFFFFF',
+  },
+  '& .MuiAlert-action .MuiIconButton-root': {
+    color: '#FFFFFF',
+    opacity: 0.9,
+    '&:hover': {
+      opacity: 1,
+      backgroundColor: 'rgba(255, 255, 255, 0.16)',
+    },
+  },
+  '&.MuiAlert-filledError, &.MuiAlert-filledSuccess, &.MuiAlert-filledWarning, &.MuiAlert-filledInfo':
+    {
+      backgroundColor: 'transparent',
+      backgroundImage: notificationGradient,
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'cover',
+      color: '#FFFFFF',
+    },
+};
+
 export const grayColors = {
   300: '#D0D5DD',
   500: '#667085',

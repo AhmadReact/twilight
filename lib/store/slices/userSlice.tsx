@@ -1,4 +1,5 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
+import { loginAdmin } from '@/lib/store/thunks/mainThunk';
 
 export type UserRole = 'super_admin' | 'admin';
 
@@ -12,6 +13,7 @@ export type User = {
 
 export type UserState = {
   user: User | null;
+  token: string | null;
   isAuthenticated: boolean;
   isLoading: boolean;
   error: string | null;
@@ -19,6 +21,7 @@ export type UserState = {
 
 const initialState: UserState = {
   user: null,
+  token: null,
   isAuthenticated: false,
   isLoading: false,
   error: null,
@@ -50,10 +53,29 @@ const userSlice = createSlice({
     },
     clearUser(state) {
       state.user = null;
+      state.token = null;
       state.isAuthenticated = false;
       state.error = null;
       state.isLoading = false;
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(loginAdmin.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(loginAdmin.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.user = action.payload.user;
+        state.token = action.payload.token;
+        state.isAuthenticated = true;
+        state.error = null;
+      })
+      .addCase(loginAdmin.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload ?? 'Login failed';
+      });
   },
 });
 
@@ -65,6 +87,7 @@ type UserRootState = { user: UserState };
 
 export const selectUserState = (state: UserRootState) => state.user;
 export const selectCurrentUser = (state: UserRootState) => state.user.user;
+export const selectAuthToken = (state: UserRootState) => state.user.token;
 export const selectIsAuthenticated = (state: UserRootState) => state.user.isAuthenticated;
 export const selectUserLoading = (state: UserRootState) => state.user.isLoading;
 export const selectUserError = (state: UserRootState) => state.user.error;

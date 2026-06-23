@@ -24,7 +24,7 @@ export type SellerFavorRow = {
 export type { UserLocation, SavedDevice } from '@/lib/admin/userDetailTypes';
 
 export type SellerUserDetail = UserDetailBase & {
-  rating: number;
+  rating: number | null;
   reviewCount: string;
   tierLabel: string;
   totalEarning: string;

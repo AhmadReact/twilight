@@ -1,58 +1,114 @@
 'use client';
 
+import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import Pagination from '@mui/material/Pagination';
+import PaginationItem from '@mui/material/PaginationItem';
 import KeyboardArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardArrowLeftOutlined';
 import KeyboardArrowRightOutlinedIcon from '@mui/icons-material/KeyboardArrowRightOutlined';
 import { outlineButtonSx } from '@/lib/admin/adminButtonStyles';
 
 type TablePaginationProps = {
-  pages?: (number | '...')[];
+  totalPages?: number;
   activePage?: number;
+  onPageChange?: (page: number) => void;
 };
 
-const defaultPages: (number | '...')[] = [1, 2, 3, '...', 8, 9, 10];
-
 export default function TablePagination({
-  pages = defaultPages,
+  totalPages = 1,
   activePage = 1,
+  onPageChange,
 }: TablePaginationProps) {
+  const isControlled = typeof onPageChange === 'function';
+  const safeTotalPages = Math.max(1, totalPages);
+
+  const handlePrevious = () => {
+    if (!isControlled || activePage <= 1) {
+      return;
+    }
+
+    onPageChange(activePage - 1);
+  };
+
+  const handleNext = () => {
+    if (!isControlled || activePage >= safeTotalPages) {
+      return;
+    }
+
+    onPageChange(activePage + 1);
+  };
+
   return (
-    <div className="flex items-center justify-between border-t border-[#EAECF0] px-6 py-4">
+    <Box
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        gap: 2,
+        borderTop: '1px solid #EAECF0',
+        px: 3,
+        py: 2,
+        flexWrap: 'wrap',
+      }}
+    >
       <Button
         disableElevation
         startIcon={<KeyboardArrowLeftOutlinedIcon />}
         sx={outlineButtonSx}
+        disabled={!isControlled || activePage <= 1}
+        onClick={handlePrevious}
       >
         Previous
       </Button>
-      <div className="flex items-center gap-1">
-        {pages.map((page, index) =>
-          page === '...' ? (
-            <span key={`ellipsis-${index}`} className="px-2 text-sm text-[#667085]">
-              ...
-            </span>
-          ) : (
-            <button
-              key={page}
-              type="button"
-              className={`flex size-9 items-center justify-center rounded-lg text-sm font-medium ${
-                page === activePage
-                  ? 'bg-[#F9FAFB] text-[#182230]'
-                  : 'text-[#475467] hover:bg-[#F9FAFB]'
-              }`}
-            >
-              {page}
-            </button>
-          ),
+
+      <Pagination
+        count={safeTotalPages}
+        page={activePage}
+        onChange={(_, page) => {
+          if (isControlled) {
+            onPageChange(page);
+          }
+        }}
+        shape="rounded"
+        siblingCount={1}
+        boundaryCount={1}
+        hidePrevButton
+        hideNextButton
+        disabled={!isControlled}
+        sx={{
+          '& .MuiPaginationItem-root': {
+            minWidth: 36,
+            height: 36,
+            borderRadius: '8px',
+            fontSize: '14px',
+            fontWeight: 500,
+            color: '#475467',
+          },
+          '& .Mui-selected': {
+            bgcolor: '#F9FAFB !important',
+            color: '#182230',
+          },
+        }}
+        renderItem={(item) => (
+          <PaginationItem
+            {...item}
+            slots={{
+              previous: KeyboardArrowLeftOutlinedIcon,
+              next: KeyboardArrowRightOutlinedIcon,
+            }}
+          />
         )}
-      </div>
+      />
+
       <Button
         disableElevation
         endIcon={<KeyboardArrowRightOutlinedIcon />}
         sx={outlineButtonSx}
+        disabled={!isControlled || activePage >= safeTotalPages}
+        onClick={handleNext}
       >
         Next
       </Button>
-    </div>
+    </Box>
   );
 }

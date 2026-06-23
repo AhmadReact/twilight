@@ -7,8 +7,9 @@ export type UserBookingCard = {
   date: string;
   time: string;
   location: string;
-  thumbnailSrc: string;
+  thumbnailSrc?: string;
   layout?: 'side' | 'stacked';
+  provider?: BookingServiceProvider;
 };
 
 export type UserLocation = {

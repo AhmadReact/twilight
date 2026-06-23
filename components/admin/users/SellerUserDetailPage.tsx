@@ -43,7 +43,9 @@ export default function SellerUserDetailPage({ detail }: SellerUserDetailPagePro
             verified={detail.verified}
             trailing={
               <>
-                <RatingSummary rating={detail.rating} reviewCount={detail.reviewCount} />
+                {detail.rating != null ? (
+                  <RatingSummary rating={detail.rating} reviewCount={detail.reviewCount} />
+                ) : null}
                 <StatusBadge
                   label={user.status}
                   bg={statusStyle.bg}
@@ -61,13 +63,20 @@ export default function SellerUserDetailPage({ detail }: SellerUserDetailPagePro
           />
         </div>
 
-        <UserDetailActionsBar userId={user.userId} memberSince={user.memberSince} />
+        <UserDetailActionsBar
+          userId={user.userId}
+          userName={user.name}
+          memberSince={user.memberSince}
+          isBlocked={user.status === 'Blocked'}
+        />
 
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
           <StatMetricCard
             label="Total Earning"
             value={detail.totalEarning}
-            trend={{ value: detail.earningTrend, direction: 'down' }}
+            trend={
+              detail.earningTrend ? { value: detail.earningTrend, direction: 'down' } : undefined
+            }
           />
           <StatMetricCard label="Active Favors" value={detail.activeFavors} />
           <BookingsMetricCard

@@ -9,6 +9,9 @@ import {
   persistReducer,
   persistStore,
 } from 'redux-persist';
+import { userApi } from '@/app/admin/users/store/userAPI';
+import { injectStore } from '@/lib/axios';
+import notificationReducer from '@/lib/store/slices/notificationSlice';
 import userReducer from '@/lib/store/slices/userSlice';
 import storage from '@/lib/store/storage';
 
@@ -20,6 +23,8 @@ const userPersistConfig = {
 
 const rootReducer = combineReducers({
   user: persistReducer(userPersistConfig, userReducer),
+  notification: notificationReducer,
+  [userApi.reducerPath]: userApi.reducer,
 });
 
 export const store = configureStore({
@@ -29,10 +34,12 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }),
+    }).concat(userApi.middleware),
 });
 
 export const persistor = persistStore(store);
+
+injectStore(store);
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
