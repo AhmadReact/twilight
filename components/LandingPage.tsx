@@ -16,25 +16,14 @@ const BLUE = "#0c3ea3";
 /* Two "T"s merged within a circular form (the logo monogram). */
 function TwilightMark({ className = "h-9 w-9" }: { className?: string }) {
   return (
-    <svg className={className} viewBox="0 0 48 48" fill="none">
-      <circle cx="24" cy="24" r="23" fill={BLUE} />
-      <path
-        d="M11 17h15M18.5 17v16"
-        stroke="#ffffff"
-        strokeWidth="3.2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <g transform="rotate(14 28 25)" opacity="0.6">
-        <path
-          d="M22 18h15M29.5 18v16"
-          stroke="#ffffff"
-          strokeWidth="3.2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </g>
-    </svg>
+    <Image
+      src="/icon.png"
+      alt=""
+      width={48}
+      height={48}
+      className={`rounded-full object-cover ${className}`}
+      aria-hidden
+    />
   );
 }
 
@@ -90,16 +79,7 @@ const heroStats = [
   { value: "10+", label: "Years of experience" },
   { value: "100+", label: "Projects delivered" },
   { value: "50+", label: "Happy clients" },
-  { value: "2", label: "Global offices" },
-];
-
-const citedBy = [
-  "Forbes",
-  "TechCrunch",
-  "The Verge",
-  "Inc.",
-  "Entrepreneur",
-  "Mashable",
+  { value: "1", label: "Global offices" },
 ];
 
 const categories = [
@@ -407,40 +387,6 @@ function Hero() {
           trusted by clients worldwide since 2015.
         </p>
 
-        <form
-          onSubmit={(e) => e.preventDefault()}
-          className="mx-auto mt-9 flex max-w-2xl flex-col gap-2 rounded-2xl border border-border bg-white p-2 shadow-lg sm:flex-row sm:rounded-full"
-        >
-          <div className="flex flex-1 items-center gap-2 px-4">
-            <svg
-              className="h-5 w-5 text-slate"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z"
-              />
-            </svg>
-            <input
-              type="text"
-              placeholder="Tell us about your project or the service you need..."
-              className="w-full bg-transparent py-3 text-sm text-navy placeholder:text-slate/60 focus:outline-none"
-            />
-          </div>
-          <button
-            type="submit"
-            className="inline-flex items-center justify-center gap-2 rounded-full px-7 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
-            style={{ backgroundColor: BLUE }}
-          >
-            Get a Quote
-            <ArrowRight />
-          </button>
-        </form>
-
         <div className="mx-auto mt-14 grid max-w-3xl grid-cols-2 gap-6 sm:grid-cols-4">
           {heroStats.map((stat) => (
             <div key={stat.label}>
@@ -450,19 +396,6 @@ function Hero() {
               <p className="mt-1 text-sm text-slate">{stat.label}</p>
             </div>
           ))}
-        </div>
-
-        <div className="mt-16">
-          <p className="text-xs font-semibold uppercase tracking-widest text-slate/70">
-            Cited as a source by
-          </p>
-          <div className="mt-5 flex flex-wrap items-center justify-center gap-x-10 gap-y-3">
-            {citedBy.map((name) => (
-              <span key={name} className="text-base font-bold text-slate/50">
-                {name}
-              </span>
-            ))}
-          </div>
         </div>
       </div>
     </section>

@@ -49,8 +49,7 @@ const offices = [
   {
     label: "United States",
     address: ["Anne Arundel County", "Maryland"],
-    phone: "+1 (302) 725 4147",
-    email: "info@twilight.net",
+    email: "contactus@twilight-technology.net",
   },
 ];
 
@@ -294,14 +293,6 @@ export default function AboutPage() {
                     {office.address.map((line) => (
                       <li key={line}>{line}</li>
                     ))}
-                    <li>
-                      <a
-                        href={`tel:${office.phone.replace(/\s/g, "")}`}
-                        className="transition-colors hover:text-navy"
-                      >
-                        {office.phone}
-                      </a>
-                    </li>
                     <li>
                       <a
                         href={`mailto:${office.email}`}
