@@ -268,68 +268,68 @@ function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-white/95 backdrop-blur">
       <AnimateOnScroll animation="fade-in" immediate duration={500}>
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-3.5 sm:px-6 lg:px-8">
-        <a href="#top">
-          <Logo className="h-10 w-auto max-md:relative max-md:left-10" />
-        </a>
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-3.5 sm:px-6 lg:px-8">
+          <a href="#top">
+            <Logo className="h-10 w-auto max-xl:relative max-xl:left-10" />
+          </a>
 
-        <nav className="hidden items-center gap-6 lg:flex">
-          {navLinks.map((link) => (
+          <nav className="hidden items-center gap-6 lg:flex">
+            {navLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                className="text-sm font-semibold text-navy/80 transition-colors hover:text-navy"
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+
+          <div className="hidden items-center gap-3 lg:flex">
             <a
-              key={link.label}
-              href={link.href}
+              href="/about-us#contact"
               className="text-sm font-semibold text-navy/80 transition-colors hover:text-navy"
             >
-              {link.label}
+              Contact Us
             </a>
-          ))}
-        </nav>
+            <a
+              href="/about-us#contact"
+              className="inline-flex items-center gap-1.5 rounded-md px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+              style={{ backgroundColor: BLUE }}
+            >
+              Get a Quote
+            </a>
+          </div>
 
-        <div className="hidden items-center gap-3 lg:flex">
-          <a
-            href="/about-us#contact"
-            className="text-sm font-semibold text-navy/80 transition-colors hover:text-navy"
+          <button
+            type="button"
+            className="rounded-lg p-2 text-navy lg:hidden"
+            onClick={() => setOpen(!open)}
+            aria-label="Toggle menu"
           >
-            Contact Us
-          </a>
-          <a
-            href="/about-us#contact"
-            className="inline-flex items-center gap-1.5 rounded-md px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90"
-            style={{ backgroundColor: BLUE }}
-          >
-            Get a Quote
-          </a>
+            <svg
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              {open ? (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              ) : (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              )}
+            </svg>
+          </button>
         </div>
-
-        <button
-          type="button"
-          className="rounded-lg p-2 text-navy lg:hidden"
-          onClick={() => setOpen(!open)}
-          aria-label="Toggle menu"
-        >
-          <svg
-            className="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth={2}
-          >
-            {open ? (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            ) : (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            )}
-          </svg>
-        </button>
-      </div>
       </AnimateOnScroll>
 
       {open && (
@@ -436,8 +436,8 @@ function Categories() {
               Software development services we provide
             </h2>
             <p className="mt-4 text-lg text-slate">
-              From custom software and mobile apps to UI/UX design and managed IT
-              — we build scalable solutions tailored to your business.
+              From custom software and mobile apps to UI/UX design and managed
+              IT — we build scalable solutions tailored to your business.
             </p>
           </div>
         </AnimateOnScroll>
@@ -449,32 +449,32 @@ function Categories() {
               animation="fade-up"
               delay={index * 80}
             >
-            <a
-              href="/about-us#contact"
-              className="group flex h-full flex-col rounded-2xl border border-border bg-white p-6 transition-all duration-300 hover:-translate-y-1.5 hover:border-blue-200 hover:shadow-lg"
-            >
-              <div
-                className={`mb-5 inline-flex h-14 w-14 items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-110 ${cat.tint}`}
+              <a
+                href="/about-us#contact"
+                className="group flex h-full flex-col rounded-2xl border border-border bg-white p-6 transition-all duration-300 hover:-translate-y-1.5 hover:border-blue-200 hover:shadow-lg"
               >
-                <CategoryIcon type={cat.icon} />
-              </div>
-              <h3 className="text-lg font-bold text-navy">{cat.title}</h3>
-              <p className="mt-2 flex-1 text-sm leading-relaxed text-slate">
-                {cat.description}
-              </p>
-              <div className="mt-5 flex items-center justify-between">
-                <span className="text-xs font-semibold text-slate">
-                  {cat.count}
-                </span>
-                <span
-                  className="inline-flex items-center gap-1 text-sm font-semibold transition-transform group-hover:translate-x-0.5"
-                  style={{ color: BLUE }}
+                <div
+                  className={`mb-5 inline-flex h-14 w-14 items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-110 ${cat.tint}`}
                 >
-                  Explore
-                  <ArrowRight className="h-3.5 w-3.5" />
-                </span>
-              </div>
-            </a>
+                  <CategoryIcon type={cat.icon} />
+                </div>
+                <h3 className="text-lg font-bold text-navy">{cat.title}</h3>
+                <p className="mt-2 flex-1 text-sm leading-relaxed text-slate">
+                  {cat.description}
+                </p>
+                <div className="mt-5 flex items-center justify-between">
+                  <span className="text-xs font-semibold text-slate">
+                    {cat.count}
+                  </span>
+                  <span
+                    className="inline-flex items-center gap-1 text-sm font-semibold transition-transform group-hover:translate-x-0.5"
+                    style={{ color: BLUE }}
+                  >
+                    Explore
+                    <ArrowRight className="h-3.5 w-3.5" />
+                  </span>
+                </div>
+              </a>
             </AnimateOnScroll>
           ))}
         </div>
@@ -509,8 +509,8 @@ function Reviews() {
               What our clients say
             </h2>
             <p className="mt-4 text-lg text-slate">
-              Real feedback from businesses we&apos;ve partnered with on software
-              projects.
+              Real feedback from businesses we&apos;ve partnered with on
+              software projects.
             </p>
           </div>
         </AnimateOnScroll>
@@ -522,27 +522,25 @@ function Reviews() {
               animation="fade-up"
               delay={index * 70}
             >
-            <div
-              className="flex h-full flex-col rounded-2xl border border-border bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
-            >
-              <div className="flex items-center justify-between">
-                <h3 className="font-bold text-navy">{r.company}</h3>
-                <span
-                  className="inline-flex items-center gap-1 rounded-md px-2 py-1 text-xs font-bold text-white"
-                  style={{ backgroundColor: "#f5a623" }}
-                >
-                  <Star className="h-3 w-3" />
-                  5.0
-                </span>
+              <div className="flex h-full flex-col rounded-2xl border border-border bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+                <div className="flex items-center justify-between">
+                  <h3 className="font-bold text-navy">{r.company}</h3>
+                  <span
+                    className="inline-flex items-center gap-1 rounded-md px-2 py-1 text-xs font-bold text-white"
+                    style={{ backgroundColor: "#f5a623" }}
+                  >
+                    <Star className="h-3 w-3" />
+                    5.0
+                  </span>
+                </div>
+                <p className="mt-4 flex-1 text-sm leading-relaxed text-slate">
+                  &ldquo;{r.quote}&rdquo;
+                </p>
+                <div className="mt-5 border-t border-border pt-4">
+                  <p className="text-sm font-semibold text-navy">{r.author}</p>
+                  <p className="text-xs text-slate">{r.role}</p>
+                </div>
               </div>
-              <p className="mt-4 flex-1 text-sm leading-relaxed text-slate">
-                &ldquo;{r.quote}&rdquo;
-              </p>
-              <div className="mt-5 border-t border-border pt-4">
-                <p className="text-sm font-semibold text-navy">{r.author}</p>
-                <p className="text-xs text-slate">{r.role}</p>
-              </div>
-            </div>
             </AnimateOnScroll>
           ))}
         </div>
@@ -575,30 +573,28 @@ function Software() {
               animation="scale-up"
               delay={index * 80}
             >
-            <div
-              className="flex h-full flex-col rounded-2xl border border-border bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
-            >
-              <div className="flex items-start gap-4">
-                <div
-                  className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-lg font-extrabold text-white"
-                  style={{ backgroundColor: BLUE }}
-                >
-                  {tech.name.charAt(0)}
+              <div className="flex h-full flex-col rounded-2xl border border-border bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+                <div className="flex items-start gap-4">
+                  <div
+                    className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-lg font-extrabold text-white"
+                    style={{ backgroundColor: BLUE }}
+                  >
+                    {tech.name.charAt(0)}
+                  </div>
+                  <div>
+                    <h3 className="font-bold leading-snug text-navy">
+                      {tech.name}
+                    </h3>
+                    <p className="mt-1 text-xs font-semibold uppercase tracking-wide text-slate">
+                      {tech.category}
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-bold leading-snug text-navy">
-                    {tech.name}
-                  </h3>
-                  <p className="mt-1 text-xs font-semibold uppercase tracking-wide text-slate">
-                    {tech.category}
-                  </p>
-                </div>
-              </div>
 
-              <p className="mt-4 flex-1 text-sm leading-relaxed text-slate">
-                {tech.description}
-              </p>
-            </div>
+                <p className="mt-4 flex-1 text-sm leading-relaxed text-slate">
+                  {tech.description}
+                </p>
+              </div>
             </AnimateOnScroll>
           ))}
         </div>
@@ -699,24 +695,24 @@ function WhyTrust() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <AnimateOnScroll animation="fade-left">
-          <div>
-            <Image
-              src="/logoTrans.png"
-              alt="Twilight Technologies"
-              width={1536}
-              height={1024}
-              className="h-14 w-14 object-contain"
-              style={{ transform: "scale(2.0)" }}
-            />
-            <h2 className="mt-5 text-3xl font-extrabold text-navy sm:text-4xl">
-              Why trust Twilight Technologies
-            </h2>
-            <p className="mt-4 text-lg leading-relaxed text-slate">
-              Twilight Technologies is a leading software company providing
-              custom development, design, and IT services — helping businesses
-              of all sizes build scalable, innovative solutions since 2015.
-            </p>
-          </div>
+            <div>
+              <Image
+                src="/logoTrans.png"
+                alt="Twilight Technologies"
+                width={1536}
+                height={1024}
+                className="h-14 w-14 object-contain"
+                style={{ transform: "scale(2.0)" }}
+              />
+              <h2 className="mt-5 text-3xl font-extrabold text-navy sm:text-4xl">
+                Why trust Twilight Technologies
+              </h2>
+              <p className="mt-4 text-lg leading-relaxed text-slate">
+                Twilight Technologies is a leading software company providing
+                custom development, design, and IT services — helping businesses
+                of all sizes build scalable, innovative solutions since 2015.
+              </p>
+            </div>
           </AnimateOnScroll>
 
           <ul className="space-y-4">
@@ -726,29 +722,27 @@ function WhyTrust() {
                 animation="fade-right"
                 delay={index * 100}
               >
-              <li
-                className="flex items-start gap-3 rounded-xl border border-border bg-slate-light/60 p-5 transition-all duration-300 hover:border-blue-200 hover:shadow-sm"
-              >
-                <span
-                  className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-white"
-                  style={{ backgroundColor: BLUE }}
-                >
-                  <svg
-                    className="h-3.5 w-3.5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={3}
+                <li className="flex items-start gap-3 rounded-xl border border-border bg-slate-light/60 p-5 transition-all duration-300 hover:border-blue-200 hover:shadow-sm">
+                  <span
+                    className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-white"
+                    style={{ backgroundColor: BLUE }}
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                </span>
-                <span className="text-sm font-medium text-navy">{point}</span>
-              </li>
+                    <svg
+                      className="h-3.5 w-3.5"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={3}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                  </span>
+                  <span className="text-sm font-medium text-navy">{point}</span>
+                </li>
               </AnimateOnScroll>
             ))}
           </ul>
@@ -800,15 +794,15 @@ function Footer() {
     <footer className="border-t border-border bg-white py-14">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <AnimateOnScroll animation="fade-up">
-        <div className="grid gap-10 lg:grid-cols-6">
-          <div className="lg:col-span-2">
-            <Logo className="h-10 w-auto max-md:relative max-md:left-10" />
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-slate">
-              A leading software company delivering custom development, design,
-              and IT services for businesses worldwide.
-            </p>
-            <div className="mt-5 flex gap-3">
-              {[
+          <div className="grid gap-10 lg:grid-cols-6">
+            <div className="lg:col-span-2">
+              <Logo className="h-10 w-auto max-xl:relative max-xl:left-10" />
+              <p className="mt-4 max-w-xs text-sm leading-relaxed text-slate">
+                A leading software company delivering custom development,
+                design, and IT services for businesses worldwide.
+              </p>
+              <div className="mt-5 flex gap-3">
+                {/* {[
                 {
                   label: "LinkedIn",
                   path: "M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 114.127 0 2.063 2.063 0 01-2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z",
@@ -836,43 +830,44 @@ function Footer() {
                     <path d={social.path} />
                   </svg>
                 </a>
-              ))}
+              ))} */}
+              </div>
             </div>
+
+            {footerCols.map((col) => (
+              <div key={col.title}>
+                <h3 className="text-sm font-bold text-navy">{col.title}</h3>
+                {"lines" in col && col.lines ? (
+                  <div className="mt-4 space-y-2.5">
+                    {col.lines.map((line) => (
+                      <p key={line} className="text-sm text-slate">
+                        {line}
+                      </p>
+                    ))}
+                  </div>
+                ) : (
+                  <ul className="mt-4 space-y-2.5">
+                    {col.links.map((link) => {
+                      const label =
+                        typeof link === "string" ? link : link.label;
+                      const href = typeof link === "string" ? "#" : link.href;
+
+                      return (
+                        <li key={label}>
+                          <Link
+                            href={href}
+                            className="text-sm text-slate transition-colors hover:text-navy"
+                          >
+                            {label}
+                          </Link>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                )}
+              </div>
+            ))}
           </div>
-
-          {footerCols.map((col) => (
-            <div key={col.title}>
-              <h3 className="text-sm font-bold text-navy">{col.title}</h3>
-              {"lines" in col && col.lines ? (
-                <div className="mt-4 space-y-2.5">
-                  {col.lines.map((line) => (
-                    <p key={line} className="text-sm text-slate">
-                      {line}
-                    </p>
-                  ))}
-                </div>
-              ) : (
-                <ul className="mt-4 space-y-2.5">
-                  {col.links.map((link) => {
-                    const label = typeof link === "string" ? link : link.label;
-                    const href = typeof link === "string" ? "#" : link.href;
-
-                    return (
-                      <li key={label}>
-                        <Link
-                          href={href}
-                          className="text-sm text-slate transition-colors hover:text-navy"
-                        >
-                          {label}
-                        </Link>
-                      </li>
-                    );
-                  })}
-                </ul>
-              )}
-            </div>
-          ))}
-        </div>
         </AnimateOnScroll>
 
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border pt-8 sm:flex-row">
