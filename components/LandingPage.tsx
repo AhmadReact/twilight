@@ -270,7 +270,7 @@ function Header() {
       <AnimateOnScroll animation="fade-in" immediate duration={500}>
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-3.5 sm:px-6 lg:px-8">
           <a href="#top">
-            <Logo className="h-10 w-auto max-xl:relative max-xl:left-10" />
+            <Logo className="h-10 w-auto max-2xl:relative max-2xl:left-10" />
           </a>
 
           <nav className="hidden items-center gap-6 lg:flex">
@@ -796,7 +796,7 @@ function Footer() {
         <AnimateOnScroll animation="fade-up">
           <div className="grid gap-10 lg:grid-cols-6">
             <div className="lg:col-span-2">
-              <Logo className="h-10 w-auto max-xl:relative max-xl:left-10" />
+              <Logo className="h-10 w-auto max-2xl:relative max-2xl:left-10" />
               <p className="mt-4 max-w-xs text-sm leading-relaxed text-slate">
                 A leading software company delivering custom development,
                 design, and IT services for businesses worldwide.
