@@ -154,7 +154,7 @@ function Footer() {
             <Logo className="h-10 w-auto" />
           </Link>
           <p className="text-sm text-slate">
-            &copy; {new Date().getFullYear()} Twilight Technologies PVT LTD. All
+            &copy; {new Date().getFullYear()} Twilight Technologies LTD. All
             rights reserved.
           </p>
           <div className="flex items-center gap-6">

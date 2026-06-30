@@ -872,7 +872,7 @@ function Footer() {
 
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border pt-8 sm:flex-row">
           <p className="text-sm text-slate">
-            &copy; {new Date().getFullYear()} Twilight Technologies PVT LTD. All
+            &copy; {new Date().getFullYear()} Twilight Technologies LTD. All
             rights reserved.
           </p>
           <div className="flex items-center gap-6">
